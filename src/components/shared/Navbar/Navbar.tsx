@@ -120,7 +120,7 @@ export default function Navbar() {
           <div ref={profileDropdownRef} className="relative">
             <button
               onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-              className="flex items-center gap-2 p-2 hover:bg-gray-50 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="flex items-center gap-2 p-2 hover:bg-gray-50 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2  border border-[#D4D4D4] focus:ring-green-500"
               aria-haspopup="true"
               aria-expanded={profileDropdownOpen}
             >
