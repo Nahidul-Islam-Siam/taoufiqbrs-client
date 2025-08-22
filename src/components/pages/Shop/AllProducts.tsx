@@ -185,17 +185,18 @@ const AllProducts = () => {
 
       {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
-        {products.map((product) => (
+        {products?.map((product) => (
           <ProductCard
-            key={product.id}
-            name={product.name}
-            price={product.price}
-            originalPrice={product.originalPrice}
-            image={product.image}
-            description={product.description}
-            origin={product.origin}
-            type={product.type}
-            weight={product.weight}
+            key={product?.id}
+            id={product?.id}
+            name={product?.name}
+            price={product?.price}
+            originalPrice={product?.originalPrice}
+            image={product?.image}
+            description={product?.description}
+            origin={product?.origin}
+            type={product?.type}
+            weight={product?.weight}
           />
         ))}
       </div>
