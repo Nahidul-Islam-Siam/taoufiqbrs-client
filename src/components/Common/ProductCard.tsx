@@ -17,6 +17,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({
+  id,
   name,
   price,
   image,
@@ -116,5 +117,6 @@ export function ProductCard({
         </Button>
       </CardContent>
     </Card>
+    </Link>
   );
 }
