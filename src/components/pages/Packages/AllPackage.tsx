@@ -14,7 +14,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 2,
@@ -26,7 +27,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 3,
@@ -38,7 +40,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 4,
@@ -50,7 +53,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 5,
@@ -62,7 +66,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 6,
@@ -74,7 +79,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 7,
@@ -86,7 +92,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 9,
@@ -98,7 +105,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 10,
@@ -110,7 +118,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 11,
@@ -122,7 +131,8 @@ const products = [
     origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    Weight: 17
+    Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
 ];
 const AllPackage = () => {
@@ -189,6 +199,7 @@ const AllPackage = () => {
             origin={product?.origin}
             type={product?.type}
             Weight={product?.Weight}
+            packages={product?.packages}
           />
         ))}
       </div>

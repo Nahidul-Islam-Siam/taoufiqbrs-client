@@ -19,6 +19,7 @@ export interface ProductCardProps {
   origin?: string;
   type?: string;
   Weight?: number;
+  packages?: string;
 }
 
 export function ProductCard({
@@ -32,6 +33,7 @@ export function ProductCard({
   origin,
   type,
   Weight,
+  packages
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -57,6 +59,12 @@ export function ProductCard({
         </div>
         <h3 className="font-semibold text-sm mb-1">{name}</h3>
 
+        {packages && (
+          <p className="text-xs text-gray-500 mb-2">
+            {" "}
+            Packages: {packages}
+          </p>
+        )}
         {description && (
           <p className="text-xs text-gray-500 mb-2">
             {" "}
