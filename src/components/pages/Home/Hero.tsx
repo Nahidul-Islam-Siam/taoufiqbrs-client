@@ -1,10 +1,11 @@
-
-import { Badge } from "@/components/ui/badge"
-import Image from "next/image"
-import { Input } from "@/components/ui/input"
-import fruitImag from "@/assets/hero/fruit-bucket.png"
-import bgImg from "@/assets/hero/Mask group.png"
-import Apple from "@/assets/icon/apple"
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import { Input } from "@/components/ui/input";
+import fruitImag from "@/assets/hero/fruit-bucket.png";
+import bgImg from "@/assets/hero/Mask group.png";
+import Apple from "@/assets/icon/appstore.png";
+import Google from "@/assets/icon/googleplay.png";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -38,8 +39,9 @@ export function HeroSection() {
               <span className="text-green-600">Organic Produce</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
-              Saveurs Provençales brings you the authentic taste of Provence — 
-              delivering fresh, seasonal fruits and vegetables to meet the needs of your business.
+              Saveurs Provençales brings you the authentic taste of Provence —
+              delivering fresh, seasonal fruits and vegetables to meet the needs
+              of your business.
             </p>
 
             {/* Search Bar */}
@@ -49,23 +51,37 @@ export function HeroSection() {
                 placeholder="Search Your Product"
                 className=" pl-4 pr-32 py-4 text-base bg-white  sm:text-lg border-1 border-green-200 focus:border-green-500 focus:ring-green-500 rounded-l-full"
               />
-              <button
-                className=" rounded-r-full bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 text-sm sm:text-base"
-              >
+              <button className=" rounded-r-full bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 text-sm sm:text-base">
                 Search
               </button>
             </div>
 
             {/* App Badges */}
             <div className="flex justify-center lg:justify-start gap-4 flex-wrap">
-              <Apple/>
-              <Image
-                src="/google-play-badge.png"
-                alt="Google Play"
-                width={130}
-                height={40}
-                className="w-28 sm:w-36 lg:w-40 h-auto"
-              />
+              <Link
+                href="https://www.apple.com/app-store/"
+                className="cursor-pointer"
+              >
+                <Image
+                  src={Apple}
+                  alt="Apple Store"
+                  width={130}
+                  height={40}
+                  className="w-28 sm:w-36 lg:w-40 h-auto"
+                />
+              </Link>
+              <Link
+                href="https://play.google.com/store/"
+                className="cursor-pointer"
+              >
+                <Image
+                  src={Google}
+                  alt="Google Play"
+                  width={130}
+                  height={40}
+                  className="w-28 sm:w-36 lg:w-40 h-auto"
+                />
+              </Link>
             </div>
           </div>
 
@@ -83,5 +99,5 @@ export function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
