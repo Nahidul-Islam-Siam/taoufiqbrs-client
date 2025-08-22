@@ -60,7 +60,7 @@ const ProductDetailsCard = ({
                 } cursor-pointer`}
               >
                 <Image
-                  src={image || 'placeholder-blur.png'}
+                  src={image || "placeholder-blur.png"}
                   width={96}
                   height={96}
                   alt={`Cabbage thumbnail ${index}`}
