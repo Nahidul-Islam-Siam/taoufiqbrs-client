@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import ProductDetailsHero from "./ProductDetailsHero";
 import image from "@/assets/home/Frame 70.png";
 import ProductDetailsCard from "@/components/Common/ProductDetailsCard";
+import { ProductGrid } from "@/components/Common/ProductGrid";
 
 const products = [
   {
@@ -157,6 +158,11 @@ const ProductDetails = () => {
         Weight={product?.Weight}
         description={product?.description}
         origin={product?.origin}
+      />
+      <ProductGrid
+        title="Related Products"
+        subtitle=""
+        backgroundColor="bg-white"
       />
     </div>
   );

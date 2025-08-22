@@ -46,7 +46,7 @@ const ProductDetailsCard = ({
               width={400}
               height={400}
               alt="Fresh cabbage"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fit"
             />
           </div>
 
