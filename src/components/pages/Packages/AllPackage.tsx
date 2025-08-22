@@ -15,6 +15,7 @@ const products = [
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)",
   },
   {
     id: 2,
