@@ -17,7 +17,7 @@ export function ProductGrid({
 }: ProductGridProps) {
   const products = [
     {
-	id: 1,
+      id: 1,
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
@@ -25,7 +25,7 @@ export function ProductGrid({
       description: "Fresh organic vegetables from local farms",
     },
     {
-		id: 2,
+      id: 2,
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
@@ -33,7 +33,7 @@ export function ProductGrid({
       description: "Fresh organic vegetables from local farms",
     },
     {
-		id: 3,
+      id: 3,
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
@@ -41,7 +41,7 @@ export function ProductGrid({
       description: "Fresh organic vegetables from local farms",
     },
     {
-		id: 4,
+      id: 4,
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
@@ -52,15 +52,22 @@ export function ProductGrid({
 
   return (
     <section className={`py-16 ${backgroundColor}`}>
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
-          <p className="text-gray-600">{subtitle}</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Title + Subtitle */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8 text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+            {title}
+          </h2>
+          <p className="text-gray-600 text-sm sm:text-base md:max-w-lg">
+            {subtitle}
+          </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
-          {products?.map((product, index) => (
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+          {products?.map((product) => (
             <ProductCard
-              key={index}
+              key={product.id}
               name={product?.name}
               price={product?.price}
               originalPrice={product?.originalPrice}
@@ -69,11 +76,13 @@ export function ProductGrid({
             />
           ))}
         </div>
+
+        {/* View More Button */}
         {showViewMore && (
           <div className="text-center">
             <Button
               variant="outline"
-              className="bg-green-600 text-white rounded-full"
+              className="bg-green-600 text-white rounded-full px-6 py-2"
             >
               View More
             </Button>

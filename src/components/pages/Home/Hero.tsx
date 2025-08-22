@@ -11,8 +11,9 @@ export function HeroSection() {
   return (
     <section
       className="
-        relative flex items-center justify-center md:justify-start px-4 py-16
-        min-h-screen sm:min-h-screen lg:min-h-[80vh] xl:min-h-[100vh] 
+        relative flex items-start md:items-center justify-center md:justify-start 
+        px-4 pt-24 pb-16 md:py-16
+        min-h-screen lg:min-h-[85vh] xl:min-h-screen
         overflow-hidden
       "
     >
@@ -31,11 +32,17 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left">
-            <Badge className="bg-green-600 text-white mb-4 px-3 py-1 text-sm">
+            <Badge className="bg-green-600 text-white mb-6 px-3 py-1 text-sm">
               Explore Your Choice
             </Badge>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Your Trusted Partner For{" "}
+            <h1
+              className="
+                text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 
+                font-bold text-gray-900 mb-6 
+                leading-snug sm:leading-normal lg:leading-relaxed mt-6
+              "
+            >
+              Your Trusted Partner For <br />
               <span className="text-green-600">Organic Produce</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
@@ -49,9 +56,9 @@ export function HeroSection() {
               <Input
                 type="text"
                 placeholder="Search Your Product"
-                className=" pl-4 pr-32 py-4 text-base bg-white  sm:text-lg border-1 border-green-200 focus:border-green-500 focus:ring-green-500 rounded-l-full"
+                className="h-12 sm:h-14 pl-4 pr-32 text-base bg-white sm:text-lg border border-green-200 focus:border-green-500 focus:ring-green-500 rounded-l-full"
               />
-              <button className=" rounded-r-full bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 text-sm sm:text-base">
+              <button className="h-12 sm:h-14 rounded-r-full bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 text-sm sm:text-base">
                 Search
               </button>
             </div>
@@ -65,9 +72,9 @@ export function HeroSection() {
                 <Image
                   src={Apple}
                   alt="Apple Store"
-                  width={130}
-                  height={40}
-                  className="w-28 sm:w-36 lg:w-40 h-auto"
+                  width={140}
+                  height={45}
+                  className="w-32 sm:w-36 lg:w-40 h-auto"
                 />
               </Link>
               <Link
@@ -77,9 +84,9 @@ export function HeroSection() {
                 <Image
                   src={Google}
                   alt="Google Play"
-                  width={130}
-                  height={40}
-                  className="w-28 sm:w-36 lg:w-40 h-auto"
+                  width={140}
+                  height={45}
+                  className="w-32 sm:w-36 lg:w-40 h-auto"
                 />
               </Link>
             </div>
