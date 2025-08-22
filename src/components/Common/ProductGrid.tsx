@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "./ProductCard";
 import image from "@/assets/home/Frame 70.png";
+import { ProductCard } from "@/components/Common/ProductCard";
 
 interface ProductGridProps {
   title: string;
@@ -22,7 +22,10 @@ export function ProductGrid({
       price: 20.0,
       originalPrice: 25.0,
       image: image,
+      origin: "Japan",
       description: "Fresh organic vegetables from local farms",
+      type: "Piece",
+      Weight: 17,
     },
     {
       id: 2,
@@ -30,7 +33,10 @@ export function ProductGrid({
       price: 20.0,
       originalPrice: 25.0,
       image: image,
+      origin: "Japan",
       description: "Fresh organic vegetables from local farms",
+      type: "Piece",
+      Weight: 17,
     },
     {
       id: 3,
@@ -38,7 +44,10 @@ export function ProductGrid({
       price: 20.0,
       originalPrice: 25.0,
       image: image,
+      origin: "Japan",
       description: "Fresh organic vegetables from local farms",
+      type: "Piece",
+      Weight: 17,
     },
     {
       id: 4,
@@ -46,7 +55,10 @@ export function ProductGrid({
       price: 20.0,
       originalPrice: 25.0,
       image: image,
+      origin: "Japan",
       description: "Fresh organic vegetables from local farms",
+      type: "Piece",
+      Weight: 17,
     },
   ];
 
@@ -71,8 +83,11 @@ export function ProductGrid({
               name={product?.name}
               price={product?.price}
               originalPrice={product?.originalPrice}
-              image={product?.image}
-              description={product?.description}
+              image={product.image}
+              description={product.description}
+              origin={product.origin}
+              type={product.type}
+              weight={product.Weight}
             />
           ))}
         </div>
