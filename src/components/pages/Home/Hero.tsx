@@ -4,13 +4,14 @@ import Image from "next/image"
 import { Input } from "@/components/ui/input"
 import fruitImag from "@/assets/hero/fruit-bucket.png"
 import bgImg from "@/assets/hero/Mask group.png"
+import Apple from "@/assets/icon/apple"
 
 export function HeroSection() {
   return (
     <section
       className="
         relative flex items-center justify-center md:justify-start px-4 py-16
-        min-h-[70vh] sm:min-h-screen lg:min-h-[80vh] xl:min-h-[90vh] 
+        min-h-screen sm:min-h-screen lg:min-h-[80vh] xl:min-h-[100vh] 
         overflow-hidden
       "
     >
@@ -46,7 +47,7 @@ export function HeroSection() {
               <Input
                 type="text"
                 placeholder="Search Your Product"
-                className=" pl-4 pr-32 py-4 text-base bg-white  sm:text-lg border-2 border-green-200 focus:border-green-500 focus:ring-green-500 rounded-l-full"
+                className=" pl-4 pr-32 py-4 text-base bg-white  sm:text-lg border-1 border-green-200 focus:border-green-500 focus:ring-green-500 rounded-l-full"
               />
               <button
                 className=" rounded-r-full bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 text-sm sm:text-base"
@@ -57,13 +58,7 @@ export function HeroSection() {
 
             {/* App Badges */}
             <div className="flex justify-center lg:justify-start gap-4 flex-wrap">
-              <Image
-                src="/app-store-badge.png"
-                alt="App Store"
-                width={130}
-                height={40}
-                className="w-28 sm:w-36 lg:w-40 h-auto"
-              />
+              <Apple/>
               <Image
                 src="/google-play-badge.png"
                 alt="Google Play"
