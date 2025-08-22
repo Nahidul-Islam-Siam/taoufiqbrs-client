@@ -1,6 +1,130 @@
 import { FilterOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
+import image from "@/assets/home/Frame 70.png";
+import { ProductCard } from "@/components/Common/ProductCard";
 
+const products = [
+  {
+    id: 1,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+  {
+    id: 2,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+  {
+    id: 3,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+  {
+    id: 4,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+  {
+    id: 5,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+  {
+    id: 6,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+  {
+    id: 7,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+  {
+    id: 9,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+  {
+    id: 10,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+  {
+    id: 11,
+    name: "Vegetables",
+    price: 20.0,
+    originalPrice: 25.0,
+    rating: 5,
+    image: image,
+    origin: 'Japan',
+    description: "Fresh organic vegetables from local farms",
+    type: "Piece",
+    Weight: 17
+  },
+];
 const AllProducts = () => {
   return (
     <div className="max-w-7xl mx-auto mt-10 px-4">
@@ -49,6 +173,26 @@ const AllProducts = () => {
             <option value="cabbage">Cabbage</option>
           </select>
         </div>
+      </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
+        {products?.map((product, index) => (
+          <ProductCard
+            key={index}
+            name={product?.name}
+            price={product?.price}
+            originalPrice={product?.originalPrice}
+            rating={product?.rating}
+            image={product?.image}
+            description={product?.description}
+            origin={product?.origin}
+            type={product?.type}
+            Weight={product?.Weight}
+          />
+        ))}
+      </div>
+      <div className="mt-8 flex justify-center items-center mb-8">
+        <Button type="primary" size="small" className="px-4 py-4 rounded bg-green-500 text-white hover:!bg-green-700 hover:text-white">View More</Button>
       </div>
     </div>
   );
