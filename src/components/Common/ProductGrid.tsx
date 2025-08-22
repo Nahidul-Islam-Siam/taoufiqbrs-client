@@ -17,6 +17,7 @@ export function ProductGrid({
 }: ProductGridProps) {
   const products = [
     {
+	id: 1,
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
@@ -24,6 +25,7 @@ export function ProductGrid({
       description: "Fresh organic vegetables from local farms",
     },
     {
+		id: 2,
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
@@ -31,6 +33,7 @@ export function ProductGrid({
       description: "Fresh organic vegetables from local farms",
     },
     {
+		id: 3,
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
@@ -38,6 +41,7 @@ export function ProductGrid({
       description: "Fresh organic vegetables from local farms",
     },
     {
+		id: 4,
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,

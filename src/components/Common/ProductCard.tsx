@@ -17,7 +17,6 @@ interface ProductCardProps {
 }
 
 export function ProductCard({
-  id,
   name,
   price,
   image,
@@ -29,8 +28,8 @@ export function ProductCard({
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState<number>(1);
 
-  const increment = () => setQuantity((prev) => prev + 1);
-  const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  const increment = () => setQuantity(prev => prev + 1);
+  const decrement = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
 
   return (
     <Card className="overflow-hidden rounded-2xl shadow-md max-w-xs w-full mx-auto">
@@ -117,6 +116,5 @@ export function ProductCard({
         </Button>
       </CardContent>
     </Card>
-    </Link>
   );
 }
