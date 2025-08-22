@@ -11,11 +11,11 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
+    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)",
   },
   {
     id: 2,
@@ -24,11 +24,10 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 3,
@@ -37,11 +36,10 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 4,
@@ -50,11 +48,10 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 5,
@@ -63,11 +60,10 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 6,
@@ -76,11 +72,10 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 7,
@@ -89,11 +84,10 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 9,
@@ -102,11 +96,10 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 10,
@@ -115,11 +108,10 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
   {
     id: 11,
@@ -128,11 +120,10 @@ const products = [
     originalPrice: 25.0,
     rating: 5,
     image: image,
-    origin: 'Japan',
+    origin: "Japan",
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
     Weight: 17,
-    packages: "Tomate(1kg), Black Olive(5kg) Black Olive(5kg), Tomate(1kg)"
   },
 ];
 const AllPackage = () => {
@@ -185,26 +176,29 @@ const AllPackage = () => {
         </div>
       </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
-        {products?.map((product, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
+        {products?.map((product) => (
           <ProductCard
-            key={index}
-            id={product?.id}
-            name={product?.name}
-            price={product?.price}
-            originalPrice={product?.originalPrice}
-            rating={product?.rating}
-            image={product?.image}
-            description={product?.description}
-            origin={product?.origin}
-            type={product?.type}
-            Weight={product?.Weight}
-            packages={product?.packages}
+            key={product.id} // good for React
+            name={product.name}
+            price={product.price}
+            originalPrice={product.originalPrice}
+            image={product.image}
+            description={product.description}
+            origin={product.origin}
+            type={product.type}
+            weight={product.Weight}
           />
         ))}
       </div>
       <div className="mt-8 flex justify-center items-center mb-8">
-        <Button type="primary" size="small" className="px-4 py-4 rounded bg-green-500 text-white hover:!bg-green-700 hover:text-white">View More</Button>
+        <Button
+          type="primary"
+          size="small"
+          className="px-4 py-4 rounded bg-green-500 text-white hover:!bg-green-700 hover:text-white"
+        >
+          View More
+        </Button>
       </div>
     </div>
   );

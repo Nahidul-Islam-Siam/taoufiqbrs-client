@@ -27,7 +27,6 @@ export function ProductCard({
   origin,
   type,
   weight,
-  packages
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -62,37 +61,31 @@ export function ProductCard({
         <h3 className="font-bold text-lg mb-1">{name}</h3>
 
         {/* Description */}
-        {packages && (
-          <p className="text-xs text-gray-500 mb-2">
-            {" "}
-            Packages: {packages}
-          </p>
-        )}
         {description && (
           <p className="text-sm text-gray-500 mb-2">
             <span className="font-medium">Description:</span> {description}
           </p>
         )}
 
-        {/* Origin */}
-        {origin && (
-          <p className="text-sm text-gray-500">
-            <span className="font-medium">Origin:</span> 🇯🇵 {origin}
-          </p>
-        )}
-
-        {/* Type */}
-        {type && (
-          <p className="text-sm text-gray-500">
-            <span className="font-medium">Type:</span> {type}
-          </p>
-        )}
-
-        {/* Weight */}
-        {weight && (
-          <p className="text-sm text-gray-500 mb-2">
-            <span className="font-medium">Weight:</span> {weight}kg
-          </p>
+        {/* Origin, Type & Weight Row */}
+        {(origin || type || weight) && (
+          <div className="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-500 mb-3 gap-1">
+            {origin && (
+              <span>
+                <span className="font-medium">Origin:</span> 🇯🇵 {origin}
+              </span>
+            )}
+            {type && (
+              <span>
+                <span className="font-medium">Type:</span> {type}
+              </span>
+            )}
+            {weight && (
+              <span>
+                <span className="font-medium">Weight:</span> {weight}kg
+              </span>
+            )}
+          </div>
         )}
 
         {/* Price */}
