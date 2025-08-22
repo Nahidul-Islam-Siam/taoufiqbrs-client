@@ -1,11 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
-import img1 from "@/assets/home/Frame 56.png"
-import img2 from "@/assets/home/Frame 59.png"
+import img1 from "@/assets/home/i.jpg"
+import img2 from "@/assets/home/ii.jpg"
 
 export function HomeCategorySection() {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">
           Explore <span className="text-green-600">Category</span>
