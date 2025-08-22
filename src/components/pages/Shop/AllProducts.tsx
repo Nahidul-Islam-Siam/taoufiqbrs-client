@@ -155,7 +155,7 @@ const AllProducts = () => {
         {/* Title */}
         <div>
           <h1 className="text-xl md:text-3xl font-semibold text-gray-800">
-            All <span className="text-green-500">Products</span>
+            All <span className="text-green-600">Products</span>
           </h1>
         </div>
 
@@ -182,17 +182,16 @@ const AllProducts = () => {
             name={product?.name}
             price={product?.price}
             originalPrice={product?.originalPrice}
-            rating={product?.rating}
             image={product?.image}
             description={product?.description}
             origin={product?.origin}
             type={product?.type}
-            Weight={product?.Weight}
+            weight={product?.Weight}
           />
         ))}
       </div>
       <div className="mt-8 flex justify-center items-center mb-8">
-        <Button type="primary" size="small" className="px-4 py-4 rounded bg-green-500 text-white hover:!bg-green-700 hover:text-white">View More</Button>
+        <Button type="primary" size="small" className="px-4 py-4 bg-green-600 text-white hover:!bg-green-700 hover:text-white p-2 rounded-full">View More</Button>
       </div>
     </div>
   );

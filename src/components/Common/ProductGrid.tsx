@@ -20,7 +20,6 @@ export function ProductGrid({
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
-      rating: 5,
       image: image,
       description: "Fresh organic vegetables from local farms",
     },
@@ -28,7 +27,6 @@ export function ProductGrid({
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
-      rating: 5,
       image: image,
       description: "Fresh organic vegetables from local farms",
     },
@@ -36,7 +34,6 @@ export function ProductGrid({
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
-      rating: 5,
       image: image,
       description: "Fresh organic vegetables from local farms",
     },
@@ -44,7 +41,6 @@ export function ProductGrid({
       name: "Vegetables",
       price: 20.0,
       originalPrice: 25.0,
-      rating: 5,
       image: image,
       description: "Fresh organic vegetables from local farms",
     },
@@ -64,7 +60,6 @@ export function ProductGrid({
               name={product?.name}
               price={product?.price}
               originalPrice={product?.originalPrice}
-              rating={product?.rating}
               image={product?.image}
               description={product?.description}
             />
