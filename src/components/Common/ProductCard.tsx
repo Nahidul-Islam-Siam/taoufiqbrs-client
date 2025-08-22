@@ -5,13 +5,15 @@ import { Badge } from "@/components/ui/badge";
 // import { Star } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
-interface ProductCardProps {
-  name: string;
-  price: number;
+export interface ProductCardProps {
+  id?: number;
+  name?: string;
+  price?: number;
   originalPrice?: number;
-  rating: number;
-  image: StaticImageData;
+  rating?: number;
+  image?: StaticImageData;
   inStock?: boolean;
   description?: string;
   origin?: string;
@@ -20,6 +22,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({
+  id,
   name,
   price,
   originalPrice,
@@ -35,12 +38,13 @@ export function ProductCard({
   const increment = () => setQuantity((prev) => prev + 1);
   const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   return (
+    <Link href={`/product-details/${id}`}>
     <Card className="overflow-hidden">
       <CardContent className="p-4">
         <div className="relative mb-4">
           <Image
             src={image || "/placeholder.svg"}
-            alt={name}
+            alt={'product'}
             width={150}
             height={150}
             className="w-full h-32 object-cover rounded-lg"
@@ -114,5 +118,6 @@ export function ProductCard({
         </Button>
       </CardContent>
     </Card>
+    </Link>
   );
 }

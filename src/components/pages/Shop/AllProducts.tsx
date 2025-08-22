@@ -179,6 +179,7 @@ const AllProducts = () => {
         {products?.map((product, index) => (
           <ProductCard
             key={index}
+            id={product?.id}
             name={product?.name}
             price={product?.price}
             originalPrice={product?.originalPrice}
