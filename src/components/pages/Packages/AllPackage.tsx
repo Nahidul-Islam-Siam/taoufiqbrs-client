@@ -179,15 +179,16 @@ const AllPackage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
         {products?.map((product) => (
           <ProductCard
-            key={product.id} // good for React
-            name={product.name}
-            price={product.price}
-            originalPrice={product.originalPrice}
-            image={product.image}
-            description={product.description}
-            origin={product.origin}
-            type={product.type}
-            weight={product.Weight}
+            id={product?.id}
+            key={product?.id} 
+            name={product?.name}
+            price={product?.price}
+            originalPrice={product?.originalPrice}
+            image={product?.image}
+            description={product?.description}
+            origin={product?.origin}
+            type={product?.type}
+            weight={product?.Weight}
           />
         ))}
       </div>
