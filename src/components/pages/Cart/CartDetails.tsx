@@ -20,7 +20,7 @@ import {
 } from "antd";
 import Image from "next/image";
 import { Calendar } from "antd";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 const { TextArea } = Input;
 const { Title, Text } = Typography;
 
