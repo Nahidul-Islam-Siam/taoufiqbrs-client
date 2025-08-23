@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X, User } from "lucide-react";
 import Image from "next/image";
-import logo from "@/assets/logo/logo (2).png";
+import logo from "@/assets/logo/footer-logo.png";
 import Cart from "@/assets/icon/cart";
 
 export default function Navbar() {
@@ -68,14 +68,14 @@ export default function Navbar() {
       {/* Main Navbar */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2" aria-label="Home">
+        <Link href="/" className="flex items-center gap-2 bg-[#FEF4E8]" aria-label="Home">
           <Image
             src={logo}
             alt="Company Logo"
-            width={150}
-            height={66}
+            width={50}
+            height={40}
             priority
-            className="h-[66] w-auto"
+            className="h-[66] w-full"
           />
         </Link>
 
