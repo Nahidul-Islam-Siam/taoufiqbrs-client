@@ -19,7 +19,8 @@ import {
   ConfigProvider,
 } from "antd";
 import Image from "next/image";
-import { Calendar } from 'antd';
+import { Calendar } from "antd";
+import { useRouter } from "next/navigation";
 const { TextArea } = Input;
 const { Title, Text } = Typography;
 
@@ -32,9 +33,6 @@ interface CartItem {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   image: any;
 }
-
-
-
 
 export default function ShoppingCart() {
   const [cartItems, setCartItems] = useState<CartItem[]>([
@@ -71,7 +69,7 @@ export default function ShoppingCart() {
   const [selectedTime, setSelectedTime] = useState("08:00am");
   const [selectedSlot, setSelectedSlot] = useState("01");
   const [note, setNote] = useState("");
-
+  const router = useRouter()
   const updateQuantity = (id: number, change: number) => {
     setCartItems((items) =>
       items
@@ -99,8 +97,8 @@ export default function ShoppingCart() {
       note,
     });
     setIsModalOpen(false);
+    router.push('/order-conformation')
   };
-
 
   return (
     <ConfigProvider
@@ -305,7 +303,7 @@ export default function ShoppingCart() {
               </Title>
 
               {/* Ant Design Calendar */}
-              <Calendar fullscreen={false}  />
+              <Calendar fullscreen={false} />
             </Col>
 
             {/* Time & Slot Selection */}
@@ -314,32 +312,45 @@ export default function ShoppingCart() {
                 Select Time & Slot
               </Title>
 
-              {/* Current Time Display */}
-              <div style={{ textAlign: "center", marginBottom: "24px" }}>
-                <Title level={2} style={{ margin: 0 }}>
-                  07:00am
-                </Title>
-              </div>
-
               {/* Time Selection */}
-              <div style={{ marginBottom: "24px" }}>
-                <Button
-                  type={selectedTime === "08:00am" ? "primary" : "default"}
-                  onClick={() => setSelectedTime("08:00am")}
-                  style={{
-                    backgroundColor:
-                      selectedTime === "08:00am" ? "#22c55e" : undefined,
-                    borderColor:
-                      selectedTime === "08:00am" ? "#22c55e" : "#22c55e",
-                    borderWidth: "2px",
-                  }}
-                >
-                  08:00am
-                </Button>
+              <div
+                style={{ marginBottom: "24px" }}
+                className="flex flex-col gap-2 text-center"
+              >
+                <div>
+                  <Button
+                    type={selectedTime === "07:00am" ? "primary" : "default"}
+                    onClick={() => setSelectedTime("07:00am")}
+                    style={{
+                      backgroundColor:
+                        selectedTime === "07:00am" ? "#22c55e" : undefined,
+                      borderColor:
+                        selectedTime === "07:00am" ? "#22c55e" : "#22c55e",
+                      borderWidth: "2px",
+                    }}
+                  >
+                    07:00am
+                  </Button>
+                </div>
+                <div>
+                  <Button
+                    type={selectedTime === "08:00am" ? "primary" : "default"}
+                    onClick={() => setSelectedTime("08:00am")}
+                    style={{
+                      backgroundColor:
+                        selectedTime === "08:00am" ? "#22c55e" : undefined,
+                      borderColor:
+                        selectedTime === "08:00am" ? "#22c55e" : "#22c55e",
+                      borderWidth: "2px",
+                    }}
+                  >
+                    08:00am
+                  </Button>
+                </div>
               </div>
 
               {/* Slot Selection */}
-              <div style={{ marginBottom: "24px" }}>
+              <div style={{ marginBottom: "24px", textAlign: "center" }}>
                 <Radio.Group
                   value={selectedSlot}
                   onChange={(e) => setSelectedSlot(e.target.value)}
@@ -352,10 +363,42 @@ export default function ShoppingCart() {
               </div>
 
               {/* Additional Time Options */}
-              <Space direction="vertical" style={{ marginBottom: "24px" }}>
-                <Text type="secondary">09:00am</Text>
-                <Text type="secondary">10:00am</Text>
-              </Space>
+              {/* Time Selection */}
+              <div
+                style={{ marginBottom: "24px" }}
+                className="flex flex-col gap-2 text-center"
+              >
+                <div>
+                  <Button
+                    type={selectedTime === "09:00am" ? "primary" : "default"}
+                    onClick={() => setSelectedTime("09:00am")}
+                    style={{
+                      backgroundColor:
+                        selectedTime === "09:00am" ? "#22c55e" : undefined,
+                      borderColor:
+                        selectedTime === "09:00am" ? "#22c55e" : "#22c55e",
+                      borderWidth: "2px",
+                    }}
+                  >
+                    09:00am
+                  </Button>
+                </div>
+                <div>
+                  <Button
+                    type={selectedTime === "10:00am" ? "primary" : "default"}
+                    onClick={() => setSelectedTime("10:00am")}
+                    style={{
+                      backgroundColor:
+                        selectedTime === "10:00am" ? "#22c55e" : undefined,
+                      borderColor:
+                        selectedTime === "10:00am" ? "#22c55e" : "#22c55e",
+                      borderWidth: "2px",
+                    }}
+                  >
+                    10:00am
+                  </Button>
+                </div>
+              </div>
             </Col>
           </Row>
 
