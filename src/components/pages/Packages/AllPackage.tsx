@@ -1,7 +1,9 @@
+"use client";
 import { FilterOutlined } from "@ant-design/icons";
-import { Button, Input } from "antd";
+import { Button, Card, Input, Select } from "antd";
 import image from "@/assets/home/Frame 70.png";
 import { ProductCard } from "@/components/Common/ProductCard";
+import { useState } from "react";
 
 const products = [
   {
@@ -127,8 +129,9 @@ const products = [
   },
 ];
 const AllPackage = () => {
+  const [filterOpen, setFilterOpen] = useState(false);
   return (
-    <div className="max-w-7xl mx-auto mt-10 px-4">
+    <div className="max-w-7xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
       {/* Wrapper for Search + Filter */}
       <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
         {/* Search Bar */}
@@ -143,13 +146,58 @@ const AllPackage = () => {
         </div>
 
         {/* Filter Button */}
-        <Button
-          type="default"
-          icon={<FilterOutlined />}
-          className="border border-green-400 text-green-600 hover:!bg-green-600 hover:!text-white rounded-full px-6 py-6"
-        >
-          Filter
-        </Button>
+        <div className="relative">
+          <Button
+            type="default"
+            icon={<FilterOutlined />}
+            className="border border-green-400 text-green-600 hover:!bg-green-600 hover:!text-white rounded-full px-6 py-6"
+            onClick={() => setFilterOpen(!filterOpen)}
+          >
+            Filter
+          </Button>
+
+          {/* Custom Dropdown Modal */}
+          {filterOpen && (
+            <Card
+              className="absolute right-0 mt-2 w-64 rounded-2xl shadow-lg z-50"
+              bodyStyle={{ padding: "16px" }}
+            >
+              <div className="flex flex-col gap-4">
+                <Select placeholder="By Category" className="w-full" allowClear>
+                  <Select.Option value="tomato">Tomato</Select.Option>
+                  <Select.Option value="potato">Potato</Select.Option>
+                  <Select.Option value="onion">Onion</Select.Option>
+                  <Select.Option value="cabbage">Cabbage</Select.Option>
+                </Select>
+
+                <Select placeholder="By Origin" className="w-full" allowClear>
+                  <Select.Option value="japan">Japan</Select.Option>
+                  <Select.Option value="india">India</Select.Option>
+                  <Select.Option value="china">China</Select.Option>
+                </Select>
+
+                <div>
+                  <label className="block mb-1 text-sm text-gray-600">
+                    Price
+                  </label>
+                  <div className="flex gap-2">
+                    <Input placeholder="Min amount" />
+                    <Input placeholder="Max amount" />
+                  </div>
+                </div>
+
+                <Button
+                  type="primary"
+                  className="bg-green-600 hover:!bg-green-700 rounded-full"
+                  block
+                  onClick={() => setFilterOpen(false)}
+                >
+                  Search
+                </Button>
+              </div>
+            </Card>
+          )}
+        </div>
       </div>
 
       <div className="flex mt-5 flex-col md:flex-row justify-between items-center bg-white rounded-2xl p-4 md:p-6 mb-6">
@@ -196,7 +244,7 @@ const AllPackage = () => {
         <Button
           type="primary"
           size="small"
-          className="px-4 py-4 rounded bg-green-500 text-white hover:!bg-green-700 hover:text-white"
+          className="px-4 py-4 bg-green-600 text-white hover:!bg-green-700 hover:text-white p-2 rounded-full"
         >
           View More
         </Button>
