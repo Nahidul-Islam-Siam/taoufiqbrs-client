@@ -4,8 +4,10 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 interface ProductCardProps {
+    id: number;
   image?: string;
   name: string;
   Weight: number;
@@ -14,6 +16,7 @@ interface ProductCardProps {
 }
 
 const ProductDetailsCard = ({
+    id,
   image,
   name,
   Weight,
@@ -143,6 +146,7 @@ const ProductDetailsCard = ({
             <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 rounded-full text-lg font-semibold">
               Buy Now
             </Button>
+            <Link href={`/add-to-cart/${id}`}>
             <Button
               variant="outline"
               className="border-gray-300 text-gray-700 px-6 py-6 rounded-full text-lg font-semibold flex items-center gap-2 bg-transparent hover:bg-green-700 hover:text-white"
@@ -150,6 +154,8 @@ const ProductDetailsCard = ({
               Add To Cart
               <ShoppingCart className="h-5 w-5" />
             </Button>
+            </Link>
+            
           </div>
         </div>
       </div>

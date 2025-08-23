@@ -149,6 +149,7 @@ const ProductDetails = () => {
         </h1>
       </div>
       <ProductDetailsCard
+        id={product?.id}
         image={
           typeof product?.image === "string"
             ? product.image

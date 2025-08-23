@@ -1,123 +1,122 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-// import { Star } from "lucide-react";
-import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
-import Link from "next/link";
+import Image, { StaticImageData } from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-export interface ProductCardProps {
+interface ProductCardProps {
   id?: number;
   name?: string;
   price?: number;
   originalPrice?: number;
-  rating?: number;
   image?: StaticImageData;
   inStock?: boolean;
   description?: string;
   origin?: string;
   type?: string;
-  Weight?: number;
+  weight?: number;
+  packages?: string;
 }
 
 export function ProductCard({
-  id,
   name,
   price,
-  originalPrice,
   image,
   inStock = true,
   description,
   origin,
   type,
-  Weight,
+  weight,
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState<number>(1);
 
-  const increment = () => setQuantity((prev) => prev + 1);
-  const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  const increment = () => setQuantity(prev => prev + 1);
+  const decrement = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1));
+
   return (
-    <Link href={`/product-details/${id}`}>
-    <Card className="overflow-hidden">
-      <CardContent className="p-4">
-        <div className="relative mb-4">
+    <Card className="overflow-hidden rounded-2xl shadow-md max-w-xs w-full mx-auto">
+      <CardContent className="p-4 relative">
+        {/* Top badge */}
+        {inStock && (
+          <div className="absolute top-2 right-2 flex items-center space-x-2 bg-[#FEF4E8] px-2 py-1 rounded-md">
+            <span className="text-xs bg-black text-white px-1.5 py-0.5 rounded-sm">
+              NEW
+            </span>
+            <span className="text-xs text-black">In stock</span>
+          </div>
+        )}
+
+        {/* Product Image */}
+        <div className="mb-4">
           <Image
             src={image || "/placeholder.svg"}
-            alt={'product'}
-            width={150}
-            height={150}
-            className="w-full h-32 object-cover rounded-lg"
+            alt={'name'}
+            width={300}
+            height={300}
+            className="w-full h-40 object-contain rounded-lg"
           />
-          {inStock && (
-            <Badge className="absolute top-2 left-[180] bg-[#FEF4E8] text-black hover:text-white hover:bg-green-500 text-xs">
-              IN STOCK
-            </Badge>
-          )}
         </div>
-        <h3 className="font-semibold text-sm mb-1">{name}</h3>
 
+        {/* Product Title */}
+        <h3 className="font-bold text-lg mb-1">{name}</h3>
+
+        {/* Description */}
         {description && (
-          <p className="text-xs text-gray-500 mb-2">
-            {" "}
-            Description: {description}
+          <p className="text-sm text-gray-500 mb-2">
+            <span className="font-medium">Description:</span> {description}
           </p>
         )}
-        {origin && (
-          <p className="text-xs text-gray-500 mb-2">Origin: {origin}</p>
-        )}
-        {type && <p className="text-xs text-gray-500 mb-2">Type: {type}</p>}
-        {Weight && (
-          <p className="text-xs text-gray-500 mb-2">Weight: {Weight}</p>
-        )}
-        {/* <div className="flex items-center mb-2">
-          <div className="flex">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <Star
-                key={star}
-                className={`w-3 h-3 ${
-                  star <= rating
-                    ? "fill-yellow-400 text-yellow-400"
-                    : "text-gray-300"
-                }`}
-              />
-            ))}
-          </div>
-          <span className="text-xs text-gray-500 ml-1">({rating}.0)</span>
-        </div> */}
 
+        {/* Origin, Type & Weight Row */}
+        {(origin || type || weight) && (
+          <div className="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-500 mb-3 gap-1">
+            {origin && (
+              <span>
+                <span className="font-medium">Origin:</span> 🇯🇵 {origin}
+              </span>
+            )}
+            {type && (
+              <span>
+                <span className="font-medium">Type:</span> {type}
+              </span>
+            )}
+            {weight && (
+              <span>
+                <span className="font-medium">Weight:</span> {weight}kg
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Price */}
         <div className="flex items-center justify-between mb-3">
-          <span className="text-lg font-bold text-green-600">
-            ${price?.toFixed(2)}
+          <span className="text-md font-semibold text-green-600">
+            Price: $ {price?.toFixed(2) || 0}
           </span>
-          {originalPrice && (
-            <span className="text-sm text-gray-500 line-through">
-              ${originalPrice?.toFixed(2)}
-            </span>
-          )}
         </div>
 
         {/* Quantity Selector */}
-        <div className="flex items-center justify-evenly gap-3 mb-3">
+        <div className="flex items-center justify-center gap-6 mb-4">
           <Button
             onClick={decrement}
-            className="px-3 py-1 rounded-full bg-red-500 text-white hover:bg-red-600"
+            className="w-8 h-8 rounded-full bg-red-500 text-white hover:bg-red-600 flex items-center justify-center text-lg"
           >
             -
           </Button>
-          <span className="text-lg font-medium">{quantity}</span>
+          <span className="text-lg font-semibold">{quantity}</span>
           <Button
             onClick={increment}
-            className="px-3 py-1 rounded-full bg-green-500 text-white hover:bg-green-500"
+            className="w-8 h-8 rounded-full bg-green-600 text-white hover:bg-green-700 flex items-center justify-center text-lg"
           >
             +
           </Button>
         </div>
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2 rounded-full">
-          Add {quantity} to Cart
+
+        {/* Add to Cart Button */}
+        <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-md py-3 rounded-full">
+          Add To Cart
         </Button>
       </CardContent>
     </Card>
-    </Link>
   );
 }
