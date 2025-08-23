@@ -20,6 +20,7 @@ import {
 } from "antd";
 import Image from "next/image";
 import { Calendar } from "antd";
+import { useRouter } from "next/router";
 const { TextArea } = Input;
 const { Title, Text } = Typography;
 
@@ -68,7 +69,7 @@ export default function ShoppingCart() {
   const [selectedTime, setSelectedTime] = useState("08:00am");
   const [selectedSlot, setSelectedSlot] = useState("01");
   const [note, setNote] = useState("");
-
+  const router = useRouter()
   const updateQuantity = (id: number, change: number) => {
     setCartItems((items) =>
       items
@@ -96,6 +97,7 @@ export default function ShoppingCart() {
       note,
     });
     setIsModalOpen(false);
+    router.push('/order-conformation')
   };
 
   return (
