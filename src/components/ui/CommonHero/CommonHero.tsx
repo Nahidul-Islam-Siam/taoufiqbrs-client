@@ -16,7 +16,7 @@ const CommonHero = ({btnTitle, title, description}:props) => {
       }}
     >
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto h-full grid grid-cols-1 md:grid-cols-2 ">
+      <div className="relative z-10 max-w-7xl mx-auto h-full grid grid-cols-1 md:grid-cols-2 px-4 sm:px-6 lg:px-8">
         {/* Left Content */}
         <div className="flex flex-col justify-center px-8 md:px-0 space-y-6 text-white">
           <div>

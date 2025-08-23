@@ -132,7 +132,7 @@ const AllProducts = () => {
   const [filterOpen, setFilterOpen] = useState(false);
 
   return (
-    <div className="max-w-7xl mx-auto mt-10 px-4">
+    <div className="max-w-7xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
       {/* Wrapper for Search + Filter */}
       <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 relative">
         {/* Search Bar */}

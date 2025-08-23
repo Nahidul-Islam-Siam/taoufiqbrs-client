@@ -10,7 +10,7 @@ const PackageHero = () => {
       style={{ backgroundImage: `url(${hero.src})` }}
     >
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto h-full grid grid-cols-1 md:grid-cols-2 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto h-full grid grid-cols-1 md:grid-cols-2 items-center px-4 sm:px-6 lg:px-8">
         {/* Left Content */}
         <div className="flex flex-col justify-center px-6 md:px-0 space-y-4 md:space-y-6 text-white">
           <div>
