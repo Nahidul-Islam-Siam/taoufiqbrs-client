@@ -5,10 +5,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 interface ProductCardProps {
-  name: string;
-  price: number;
+  id?: number;
+  name?: string;
+  price?: number;
   originalPrice?: number;
-  image: StaticImageData;
+  image?: StaticImageData;
   inStock?: boolean;
   description?: string;
   origin?: string;
@@ -49,7 +50,7 @@ export function ProductCard({
         <div className="mb-4">
           <Image
             src={image || "/placeholder.svg"}
-            alt={name}
+            alt={'name'}
             width={300}
             height={300}
             className="w-full h-40 object-contain rounded-lg"
@@ -90,7 +91,7 @@ export function ProductCard({
         {/* Price */}
         <div className="flex items-center justify-between mb-3">
           <span className="text-md font-semibold text-green-600">
-            Price: ${price.toFixed(2)}
+            Price: $ {price?.toFixed(2) || 0}
           </span>
         </div>
 
