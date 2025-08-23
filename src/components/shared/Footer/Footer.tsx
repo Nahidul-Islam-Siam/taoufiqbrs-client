@@ -3,6 +3,7 @@ import Location from "@/assets/icon/location";
 import Telephone from "@/assets/icon/telephone";
 import logo from "@/assets/logo/footer-logo.png";
 import Image from "next/image";
+import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-black text-white nunito">
@@ -22,9 +23,9 @@ export default function Footer() {
             <h3 className="text-[#328736]  font-normal md:text-lg text-base  mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-300 md:text-base text-sm font-normal hover:text-white transition-colors">
+                <Link href="#" className="text-gray-300 md:text-base text-sm font-normal hover:text-white transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-gray-300 md:text-base text-sm font-normal hover:text-white transition-colors">
