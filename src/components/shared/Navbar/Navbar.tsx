@@ -101,7 +101,7 @@ export default function Navbar() {
           {/* Cart */}
           <div className="flex items-center gap-2">
             <Link
-              href="/cart"
+              href="/add-to-cart/"
               className="relative r gap-2 p-2 hover:bg-gray-50 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500"
               aria-label="View shopping cart"
             >

@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ARC (Allied Restoration Contractors)",
+  title: "SAVEURS PROVENGALES",
   description:
     "Award Winning Service Allied Restoration Contractors, Repairs & Replacement",
 };

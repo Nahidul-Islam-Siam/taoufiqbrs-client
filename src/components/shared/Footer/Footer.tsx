@@ -17,7 +17,7 @@ export default function Footer() {
               height={200}
               src={logo}
               alt="Saveurs Provençales Logo"
-              className="w-14 h-14"
+              className="w-24 h-24"
             />
           </div>
         </div>
