@@ -2,12 +2,26 @@
 
 import { useState } from "react";
 import { ChevronLeft, Minus, Plus, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import Image from "next/image";
 import img1 from "@/assets/cart/1.png";
 import img2 from "@/assets/cart/2.png";
 import img3 from "@/assets/cart/3.png";
+import {
+  Button,
+  Card,
+  Modal,
+  Input,
+  Radio,
+  Space,
+  Typography,
+  Row,
+  Col,
+  Divider,
+  ConfigProvider,
+} from "antd";
+import Image from "next/image";
+import { Calendar } from 'antd';
+const { TextArea } = Input;
+const { Title, Text } = Typography;
 
 interface CartItem {
   id: number;
@@ -19,7 +33,10 @@ interface CartItem {
   image: any;
 }
 
-export default function CartDetails() {
+
+
+
+export default function ShoppingCart() {
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
       id: 1,
@@ -50,6 +67,11 @@ export default function CartDetails() {
     },
   ]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTime, setSelectedTime] = useState("08:00am");
+  const [selectedSlot, setSelectedSlot] = useState("01");
+  const [note, setNote] = useState("");
+
   const updateQuantity = (id: number, change: number) => {
     setCartItems((items) =>
       items
@@ -70,132 +92,305 @@ export default function CartDetails() {
   const tax = 7;
   const total = subtotal + tax;
 
+  const handleConfirmOrder = () => {
+    console.log("Order confirmed with:", {
+      selectedTime,
+      selectedSlot,
+      note,
+    });
+    setIsModalOpen(false);
+  };
+
+
   return (
-    <div className="mt-10 p-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Button variant="ghost" size="sm" className="p-2">
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-          <h1 className="text-xl font-semibold">Shopping Continue</h1>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Cart Items */}
-          <div className="lg:col-span-2 space-y-4">
-            {cartItems?.map((item) => (
-              <Card key={item?.id} className="p-4">
-                <div className="flex items-center gap-4">
-                  {/* Product Image */}
-                  <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                    <Image
-                      width={500}
-                      height={300}
-                      src={item?.image || "/placeholder.svg"}
-                      alt={item?.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Product Info */}
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-lg mb-1">{item?.name}</h3>
-                    <p className="text-sm text-gray-600 mb-2">
-                      {item?.description}
-                    </p>
-                  </div>
-
-                  {/* Price */}
-                  <div className="text-lg font-semibold">
-                    ${item?.price?.toLocaleString()}
-                  </div>
-
-                  {/* Quantity Controls */}
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-0 bg-red-500 hover:bg-red-600 text-white border-red-500"
-                      onClick={() => updateQuantity(item.id, -1)}
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                    <span className="w-8 text-center font-medium">
-                      {item?.quantity?.toString().padStart(2, "0")}
-                    </span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-0 bg-green-500 hover:bg-green-600 text-white border-green-500"
-                      onClick={() => updateQuantity(item.id, 1)}
-                    >
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  {/* Delete Button */}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="p-2 text-gray-400 hover:text-red-500"
-                    onClick={() => removeItem(item.id)}
-                  >
-                    <Trash2 className="h-5 w-5" />
-                  </Button>
-                </div>
-              </Card>
-            ))}
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#22c55e",
+        },
+      }}
+    >
+      <div className="min-h-screen bg-gray-50 p-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="flex items-center gap-4 mb-8">
+            <Button type="text" icon={<ChevronLeft className="h-5 w-5" />} />
+            <Title level={3} style={{ margin: 0 }}>
+              Shopping Continue
+            </Title>
           </div>
 
-          {/* Order Summary */}
-          <div className="lg:col-span-1">
-            <Card className="p-6">
-              <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
+          <Row gutter={32}>
+            {/* Cart Items */}
+            <Col xs={24} lg={16}>
+              <Space
+                direction="vertical"
+                size="middle"
+                style={{ width: "100%" }}
+              >
+                {cartItems?.map((item) => (
+                  <Card key={item.id}>
+                    <div className="flex items-center gap-4">
+                      {/* Product Image */}
+                      <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                        <Image
+                          width={500}
+                          height={300}
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
 
-              {/* Summary Header */}
-              <div className="grid grid-cols-3 gap-4 mb-4 text-sm font-medium text-gray-600">
-                <div>Name</div>
-                <div className="text-center">Quantity</div>
-                <div className="text-right">Money</div>
-              </div>
+                      {/* Product Info */}
+                      <div className="flex-1">
+                        <Title level={4} style={{ margin: "0 0 4px 0" }}>
+                          {item.name}
+                        </Title>
+                        <Text type="secondary" style={{ fontSize: "14px" }}>
+                          {item.description}
+                        </Text>
+                      </div>
 
-              {/* Summary Items */}
-              <div className="space-y-3 mb-6">
-                {cartItems.map((item, index) => (
-                  <div key={item.id} className="grid grid-cols-3 gap-4 text-sm">
-                    <div>
-                      {index + 1}. {item.name}
+                      {/* Price */}
+                      <Title level={4} style={{ margin: 0 }}>
+                        ${item.price.toLocaleString()}
+                      </Title>
+
+                      {/* Quantity Controls */}
+                      <Space>
+                        <Button
+                          size="small"
+                          danger
+                          icon={<Minus className="h-4 w-4" />}
+                          onClick={() => updateQuantity(item.id, -1)}
+                          style={{ width: "32px", height: "32px" }}
+                        />
+                        <span className="w-8 text-center font-medium">
+                          {item.quantity.toString().padStart(2, "0")}
+                        </span>
+                        <Button
+                          size="small"
+                          type="primary"
+                          icon={<Plus className="h-4 w-4" />}
+                          onClick={() => updateQuantity(item.id, 1)}
+                          style={{
+                            width: "32px",
+                            height: "32px",
+                            backgroundColor: "#22c55e",
+                            borderColor: "#22c55e",
+                          }}
+                        />
+                      </Space>
+
+                      {/* Delete Button */}
+                      <Button
+                        type="text"
+                        danger
+                        icon={<Trash2 className="h-5 w-5" />}
+                        onClick={() => removeItem(item.id)}
+                      />
                     </div>
-                    <div className="text-center">
-                      {item.quantity.toString().padStart(2, "0")}
-                    </div>
-                    <div className="text-right">{item.quantity * 70}$</div>
-                  </div>
+                  </Card>
                 ))}
-                <div className="grid grid-cols-3 gap-4 text-sm">
-                  <div>3. Tax</div>
-                  <div className="text-center"></div>
-                  <div className="text-right">{tax}$</div>
-                </div>
-              </div>
+              </Space>
+            </Col>
 
-              {/* Total */}
-              <div className="border-t pt-4 mb-6">
-                <div className="flex justify-between items-center text-xl font-semibold">
-                  <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
-                </div>
-              </div>
+            {/* Order Summary */}
+            <Col xs={24} lg={8}>
+              <Card>
+                <Title level={3} style={{ marginBottom: "24px" }}>
+                  Order Summary
+                </Title>
 
-              {/* Place Order Button */}
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg font-medium">
-                Place Order
-              </Button>
-            </Card>
-          </div>
+                {/* Summary Header */}
+                <Row gutter={16} style={{ marginBottom: "16px" }}>
+                  <Col span={12}>
+                    <Text strong type="secondary">
+                      Name
+                    </Text>
+                  </Col>
+                  <Col span={6} style={{ textAlign: "center" }}>
+                    <Text strong type="secondary">
+                      Quantity
+                    </Text>
+                  </Col>
+                  <Col span={6} style={{ textAlign: "right" }}>
+                    <Text strong type="secondary">
+                      Money
+                    </Text>
+                  </Col>
+                </Row>
+
+                {/* Summary Items */}
+                <Space
+                  direction="vertical"
+                  size="small"
+                  style={{ width: "100%", marginBottom: "24px" }}
+                >
+                  {cartItems.map((item, index) => (
+                    <Row key={item.id} gutter={16}>
+                      <Col span={12}>
+                        <Text>
+                          {index + 1}. {item.name}
+                        </Text>
+                      </Col>
+                      <Col span={6} style={{ textAlign: "center" }}>
+                        <Text>{item.quantity.toString().padStart(2, "0")}</Text>
+                      </Col>
+                      <Col span={6} style={{ textAlign: "right" }}>
+                        <Text>{item.quantity * 70}$</Text>
+                      </Col>
+                    </Row>
+                  ))}
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Text>3. Tax</Text>
+                    </Col>
+                    <Col span={6}></Col>
+                    <Col span={6} style={{ textAlign: "right" }}>
+                      <Text>{tax}$</Text>
+                    </Col>
+                  </Row>
+                </Space>
+
+                {/* Total */}
+                <Divider />
+                <Row justify="space-between" style={{ marginBottom: "24px" }}>
+                  <Col>
+                    <Title level={3} style={{ margin: 0 }}>
+                      Total
+                    </Title>
+                  </Col>
+                  <Col>
+                    <Title level={3} style={{ margin: 0 }}>
+                      ${total.toFixed(2)}
+                    </Title>
+                  </Col>
+                </Row>
+
+                {/* Place Order Button */}
+                <Button
+                  type="primary"
+                  size="large"
+                  block
+                  onClick={() => setIsModalOpen(true)}
+                  style={{
+                    backgroundColor: "#22c55e",
+                    borderColor: "#22c55e",
+                    height: "48px",
+                    fontSize: "18px",
+                    fontWeight: "500",
+                  }}
+                >
+                  Place Order
+                </Button>
+              </Card>
+            </Col>
+          </Row>
         </div>
+
+        <Modal
+          open={isModalOpen}
+          onCancel={() => setIsModalOpen(false)}
+          footer={null}
+          width={800}
+          style={{ top: 20 }}
+        >
+          <Row gutter={32} style={{ padding: "24px 0" }}>
+            {/* Date Selection */}
+            <Col xs={24} lg={12}>
+              <Title level={2} style={{ marginBottom: "16px" }}>
+                Select Date
+              </Title>
+
+              {/* Ant Design Calendar */}
+              <Calendar fullscreen={false}  />
+            </Col>
+
+            {/* Time & Slot Selection */}
+            <Col xs={24} lg={12}>
+              <Title level={2} style={{ marginBottom: "24px" }}>
+                Select Time & Slot
+              </Title>
+
+              {/* Current Time Display */}
+              <div style={{ textAlign: "center", marginBottom: "24px" }}>
+                <Title level={2} style={{ margin: 0 }}>
+                  07:00am
+                </Title>
+              </div>
+
+              {/* Time Selection */}
+              <div style={{ marginBottom: "24px" }}>
+                <Button
+                  type={selectedTime === "08:00am" ? "primary" : "default"}
+                  onClick={() => setSelectedTime("08:00am")}
+                  style={{
+                    backgroundColor:
+                      selectedTime === "08:00am" ? "#22c55e" : undefined,
+                    borderColor:
+                      selectedTime === "08:00am" ? "#22c55e" : "#22c55e",
+                    borderWidth: "2px",
+                  }}
+                >
+                  08:00am
+                </Button>
+              </div>
+
+              {/* Slot Selection */}
+              <div style={{ marginBottom: "24px" }}>
+                <Radio.Group
+                  value={selectedSlot}
+                  onChange={(e) => setSelectedSlot(e.target.value)}
+                >
+                  <Space>
+                    <Radio value="01">Slot 01</Radio>
+                    <Radio value="02">Slot 02</Radio>
+                  </Space>
+                </Radio.Group>
+              </div>
+
+              {/* Additional Time Options */}
+              <Space direction="vertical" style={{ marginBottom: "24px" }}>
+                <Text type="secondary">09:00am</Text>
+                <Text type="secondary">10:00am</Text>
+              </Space>
+            </Col>
+          </Row>
+
+          {/* Note Section */}
+          <div style={{ marginBottom: "24px" }}>
+            <Title level={4} style={{ marginBottom: "12px" }}>
+              Note
+            </Title>
+            <TextArea
+              placeholder="Enter your note here"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              rows={4}
+              style={{ resize: "none" }}
+            />
+          </div>
+
+          {/* Confirm Button */}
+          <Button
+            type="primary"
+            size="large"
+            block
+            onClick={handleConfirmOrder}
+            style={{
+              backgroundColor: "#22c55e",
+              borderColor: "#22c55e",
+              height: "48px",
+              fontSize: "18px",
+              fontWeight: "500",
+            }}
+          >
+            Confirm Order
+          </Button>
+        </Modal>
       </div>
-    </div>
+    </ConfigProvider>
   );
 }
