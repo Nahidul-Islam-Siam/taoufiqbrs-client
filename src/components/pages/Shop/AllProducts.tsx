@@ -1,6 +1,7 @@
 "use client";
+import { useState } from "react";
 import { FilterOutlined } from "@ant-design/icons";
-import { Button, Input } from "antd";
+import { Button, Input, Select, Card } from "antd";
 import image from "@/assets/home/Frame 70.png";
 import { ProductCard } from "@/components/Common/ProductCard";
 
@@ -10,140 +11,130 @@ const products = [
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
+    weight: 17
   },
   {
     id: 2,
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
+    weight: 17
   },
   {
     id: 3,
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
+    weight: 17
   },
   {
     id: 4,
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
+    weight: 17
   },
   {
     id: 5,
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
+    weight: 17
   },
   {
     id: 6,
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
+    weight: 17
   },
   {
     id: 7,
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
-  },
-  {
-    id: 8,
-    name: "Vegetables",
-    price: 20.0,
-    originalPrice: 25.0,
-    image: image,
-    origin: "Japan",
-    description: "Fresh organic vegetables from local farms",
-    type: "Piece",
-    weight: 17,
+    weight: 17
   },
   {
     id: 9,
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
+    weight: 17
   },
   {
     id: 10,
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
+    weight: 17
   },
   {
     id: 11,
     name: "Vegetables",
     price: 20.0,
     originalPrice: 25.0,
+    rating: 5,
     image: image,
-    origin: "Japan",
+    origin: 'Japan',
     description: "Fresh organic vegetables from local farms",
     type: "Piece",
-    weight: 17,
-  },
-  {
-    id: 12,
-    name: "Vegetables",
-    price: 20.0,
-    originalPrice: 25.0,
-    image: image,
-    origin: "Japan",
-    description: "Fresh organic vegetables from local farms",
-    type: "Piece",
-    weight: 17,
+    weight: 17
   },
 ];
 
 const AllProducts = () => {
+  const [filterOpen, setFilterOpen] = useState(false);
+
   return (
     <div className="max-w-7xl mx-auto mt-10 px-4">
       {/* Wrapper for Search + Filter */}
-      <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+      <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 relative">
         {/* Search Bar */}
         <div className="flex w-full md:max-w-md">
           <Input
@@ -156,13 +147,56 @@ const AllProducts = () => {
         </div>
 
         {/* Filter Button */}
-        <Button
-          type="default"
-          icon={<FilterOutlined />}
-          className="border border-green-400 text-green-600 hover:!bg-green-600 hover:!text-white rounded-full px-6 py-6"
-        >
-          Filter
-        </Button>
+        <div className="relative">
+          <Button
+            type="default"
+            icon={<FilterOutlined />}
+            className="border border-green-400 text-green-600 hover:!bg-green-600 hover:!text-white rounded-full px-6 py-6"
+            onClick={() => setFilterOpen(!filterOpen)}
+          >
+            Filter
+          </Button>
+
+          {/* Custom Dropdown Modal */}
+          {filterOpen && (
+            <Card
+              className="absolute right-0 mt-2 w-64 rounded-2xl shadow-lg z-50"
+              bodyStyle={{ padding: "16px" }}
+            >
+              <div className="flex flex-col gap-4">
+                <Select placeholder="By Category" className="w-full" allowClear>
+                  <Select.Option value="tomato">Tomato</Select.Option>
+                  <Select.Option value="potato">Potato</Select.Option>
+                  <Select.Option value="onion">Onion</Select.Option>
+                  <Select.Option value="cabbage">Cabbage</Select.Option>
+                </Select>
+
+                <Select placeholder="By Origin" className="w-full" allowClear>
+                  <Select.Option value="japan">Japan</Select.Option>
+                  <Select.Option value="india">India</Select.Option>
+                  <Select.Option value="china">China</Select.Option>
+                </Select>
+
+                <div>
+                  <label className="block mb-1 text-sm text-gray-600">Price</label>
+                  <div className="flex gap-2">
+                    <Input placeholder="Min amount" />
+                    <Input placeholder="Max amount" />
+                  </div>
+                </div>
+
+                <Button
+                  type="primary"
+                  className="bg-green-600 hover:!bg-green-700 rounded-full"
+                  block
+                  onClick={() => setFilterOpen(false)}
+                >
+                  Search
+                </Button>
+              </div>
+            </Card>
+          )}
+        </div>
       </div>
 
       {/* Title + Dropdown */}
