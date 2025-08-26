@@ -40,8 +40,8 @@ const navItems: MenuItem[] = [
     <Package />
   ),
   getItem(
-    <Link href="/dashboard/add-packages">Add Package</Link>,
-    "/dashboard/add-packages",
+    <Link href="/dashboard/add-package">Add Package</Link>,
+    "/dashboard/add-package",
     <CirclePlus />
   ),
   getItem(
