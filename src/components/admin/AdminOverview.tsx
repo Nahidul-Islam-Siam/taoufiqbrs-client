@@ -1,10 +1,11 @@
 "use client";
-
-import React from "react";
 import { Card, Dropdown, Button, Input, MenuProps } from "antd";
-import { DollarOutlined, ShoppingOutlined, UserOutlined, DownOutlined, SearchOutlined } from "@ant-design/icons";
+import { DownOutlined, SearchOutlined } from "@ant-design/icons";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
-
+import user from "@/assets/admin/users.png"
+import dolar from "@/assets/admin/dolar.png"
+import cart from "@/assets/admin/carts.png"
+import Image from "next/image";
 
 
 const revenueData = [
@@ -68,7 +69,7 @@ const AdminOverview: React.FC = () => {
                 alignItems: "center", 
                 justifyContent: "center" 
               }}>
-                <DollarOutlined style={{ fontSize: "24px", color: "#52c41a" }} />
+                <Image src={dolar} width={200} height={200} alt="dolar"/>
               </div>
             </div>
           </Card>
@@ -88,7 +89,7 @@ const AdminOverview: React.FC = () => {
                 alignItems: "center", 
                 justifyContent: "center" 
               }}>
-                <ShoppingOutlined style={{ fontSize: "24px", color: "#fa8c16" }} />
+                <Image src={cart} width={200} height={200} alt="dolar"/>
               </div>
             </div>
           </Card>
@@ -108,7 +109,7 @@ const AdminOverview: React.FC = () => {
                 alignItems: "center", 
                 justifyContent: "center" 
               }}>
-                <UserOutlined style={{ fontSize: "24px", color: "white" }} />
+                <Image src={user} width={200} height={200} alt="dolar"/>
               </div>
             </div>
           </Card>
