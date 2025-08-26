@@ -24,7 +24,7 @@ import {
   LeftOutlined,
   RightOutlined,
 } from "@ant-design/icons";
-import type { MenuProps, TableColumnsType } from "antd";
+import type { TableColumnsType } from "antd";
 import type { Dayjs } from "dayjs";
 
 const { Title, Text } = Typography;
@@ -53,12 +53,8 @@ export default function SlotManagement() {
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [selectedSlot, setSelectedSlot] = useState("01");
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [selectedTime, setSelectedTime] = useState("08:00am To 09:00am");
-
-  const items: MenuProps["items"] = [
-    { key: "1", label: "Edit" },
-    { key: "2", label: "Remove" },
-  ];
 
   const timeSlots = [
     "08:00am To 09:00am",
@@ -99,8 +95,33 @@ export default function SlotManagement() {
     {
       title: "Actions",
       key: "actions",
-      render: () => (
-        <Dropdown menu={{ items }} trigger={["click"]}>
+      render: (_, record) => (
+        <Dropdown
+          menu={{
+            items: [
+              {
+                key: "1",
+                label: "Edit",
+                onClick: () => {
+                  console.log("Edit clicked", record);
+                  setSelectedTime(record.time);
+                  setSelectedSlot(record.slot);
+                  // If date is a string, you may need to convert it to Dayjs
+                  // setSelectedDate(dayjs(record.date, "DD/MM/YYYY"));
+                  setIsEditModalVisible(true);
+                },
+              },
+              {
+                key: "2",
+                label: "Remove",
+                onClick: () => {
+                  console.log("Remove clicked", record);
+                },
+              },
+            ],
+          }}
+          trigger={["click"]}
+        >
           <Button type="text" icon={<MoreOutlined />} />
         </Dropdown>
       ),
@@ -109,6 +130,7 @@ export default function SlotManagement() {
 
   const showModal = () => setIsModalVisible(true);
   const handleCancel = () => setIsModalVisible(false);
+  const handleEditCancel = () => setIsEditModalVisible(false);
 
   const handleOk = () => {
     console.log({
@@ -117,6 +139,15 @@ export default function SlotManagement() {
       slot: selectedSlot,
     });
     setIsModalVisible(false);
+  };
+
+  const handleEditOk = () => {
+    console.log({
+      date: selectedDate ? selectedDate.format("DD/MM/YYYY") : null,
+      time: selectedTime,
+      slot: selectedSlot,
+    });
+    setIsEditModalVisible(false);
   };
 
   return (
@@ -291,6 +322,102 @@ export default function SlotManagement() {
               onClick={handleOk}
             >
               Add Slot
+            </Button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Edit Slot Modal */}
+      <Modal
+        title={null}
+        open={isEditModalVisible}
+        onCancel={handleEditCancel}
+        footer={null}
+        closeIcon={<X size={20} />}
+        style={{ top: 20 }}
+        width="100%"
+        className="max-w-6xl mx-auto"
+      >
+        <div className="p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Select Date */}
+            <div className="flex flex-col gap-4">
+              <h3 className="text-lg font-medium text-gray-900 m-0">
+                Select Date
+              </h3>
+              <Calendar
+                fullscreen={false}
+                onSelect={(value) => setSelectedDate(value)}
+                value={selectedDate || undefined}
+                className="rounded-lg border border-gray-300"
+              />
+            </div>
+
+            {/* Select Time */}
+            <div className="flex flex-col gap-4">
+              <h3 className="text-lg font-medium text-gray-900 m-0">
+                Select Time
+              </h3>
+              <Select
+                value={selectedTime}
+                onChange={setSelectedTime}
+                size="large"
+                className="w-full"
+              >
+                {timeSlots.map((time) => (
+                  <Option key={time} value={time}>
+                    {time}
+                  </Option>
+                ))}
+              </Select>
+            </div>
+
+            {/* Select Slot */}
+            <div className="flex flex-col gap-4">
+              <h3 className="text-lg font-medium text-gray-900 m-0">
+                Select Slot
+              </h3>
+              <div className="flex flex-col gap-3 pt-2">
+                {["01", "02", "03", "04", "05"].map((slot) => (
+                  <label
+                    key={slot}
+                    className="flex items-center gap-3 cursor-pointer"
+                  >
+                    <input
+                      type="radio"
+                      name="slot"
+                      value={slot}
+                      checked={selectedSlot === slot}
+                      onChange={(e) => setSelectedSlot(e.target.value)}
+                      className="hidden"
+                    />
+                    <div
+                      className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                        selectedSlot === slot
+                          ? "border-green-600 bg-green-600"
+                          : "border-gray-300 bg-transparent"
+                      }`}
+                    >
+                      {selectedSlot === slot && (
+                        <div className="w-2 h-2 bg-white rounded-full" />
+                      )}
+                    </div>
+                    <span className="text-gray-700">{slot} Slot</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Update Slot Button */}
+          <div className="flex justify-center mt-8">
+            <Button
+              type="primary"
+              size="large"
+              className="!bg-green-600 !border-green-600 !h-12 !px-8 text-lg"
+              onClick={handleEditOk}
+            >
+              Update Slot
             </Button>
           </div>
         </div>
