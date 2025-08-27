@@ -75,8 +75,8 @@ const navItems: MenuItem[] = [
     <SquarePen />
   ),
   getItem(
-    <Link href="/dashboard/settings">Setting</Link>,
-    "/dashboard/settings",
+    <Link href="/dashboard/admin-settings">Setting</Link>,
+    "/dashboard/admin-settings",
     <Settings />
   ),
 ];
