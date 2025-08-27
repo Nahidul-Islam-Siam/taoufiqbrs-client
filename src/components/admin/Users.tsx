@@ -15,8 +15,6 @@ import {
 } from "antd";
 import {
   SearchOutlined,
-  StarFilled,
-  StarOutlined,
   MoreOutlined,
   LeftOutlined,
   RightOutlined,
@@ -24,6 +22,7 @@ import {
 import type { MenuProps, TableColumnsType } from "antd";
 import manIcon from "@/assets/admin/man-icon.png";
 import Image from "next/image";
+import Link from "next/link";
 
 const { Title, Text } = Typography;
 
@@ -100,26 +99,12 @@ const listings: Listing[] = [
 export default function Users() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const items: MenuProps["items"] = [
-    { key: "2", label: "Remove" },
-    { key: "3", label: "Details" },
-  ];
-
   const columns: TableColumnsType<Listing> = [
     {
       title: "User ID",
       dataIndex: "id",
       key: "id",
-      render: (text, record) => (
-        <Space>
-          {record.starred ? (
-            <StarFilled style={{ color: "#faad14" }} />
-          ) : (
-            <StarOutlined style={{ color: "#d9d9d9" }} />
-          )}
-          {text}
-        </Space>
-      ),
+      render: (text) => <Space>{text}</Space>,
     },
     {
       title: "User Profile",
@@ -127,7 +112,11 @@ export default function Users() {
       key: "userProfile",
       render: (text, record) => (
         <Space>
-          <Avatar src={<Image src={record.userImage} alt={text} width={32} height={32} />} />
+          <Avatar
+            src={
+              <Image src={record.userImage} alt={text} width={32} height={32} />
+            }
+          />
           {text}
         </Space>
       ),
@@ -150,11 +139,26 @@ export default function Users() {
     {
       title: "Actions",
       key: "actions",
-      render: () => (
-        <Dropdown menu={{ items }} trigger={["click"]}>
-          <Button type="text" icon={<MoreOutlined />} />
-        </Dropdown>
-      ),
+      render: (_, record) => {
+        const items: MenuProps["items"] = [
+          {
+            key: "1",
+            label: <span>Remove</span>,
+          },
+          {
+            key: "2",
+            label: (
+              <Link href={`/dashboard/user-details/${record?.id}`}>Details</Link>
+            ),
+          },
+        ];
+
+        return (
+          <Dropdown menu={{ items }} trigger={["click"]}>
+            <Button type="text" icon={<MoreOutlined />} />
+          </Dropdown>
+        );
+      },
     },
   ];
 
@@ -182,7 +186,6 @@ export default function Users() {
           <Title level={2} style={{ color: "#389e0d", margin: 0 }}>
             All User
           </Title>
-          
         </div>
 
         {/* Search Bar */}
