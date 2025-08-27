@@ -12,17 +12,24 @@ import {
   Pagination,
   Breadcrumb,
   Avatar,
+  Modal,
+  Row,
+  Col,
 } from "antd";
 import {
   SearchOutlined,
   MoreOutlined,
   LeftOutlined,
   RightOutlined,
+  UserOutlined,
+  IdcardOutlined,
+  PhoneOutlined,
+  MailOutlined,
+  EnvironmentOutlined,
 } from "@ant-design/icons";
 import type { MenuProps, TableColumnsType } from "antd";
 import manIcon from "@/assets/admin/man-icon.png";
 import Image from "next/image";
-import Link from "next/link";
 
 const { Title, Text } = Typography;
 
@@ -36,6 +43,10 @@ interface Listing {
   shopName: string;
   SIRETNumber: number;
   starred: boolean;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  address?: string;
 }
 
 // Mock data for the listings
@@ -48,6 +59,10 @@ const listings: Listing[] = [
     shopName: "XYZ Shop",
     SIRETNumber: 7154458,
     starred: true,
+    firstName: "Alex",
+    lastName: "Amanda",
+    phone: "01547475",
+    address: "Lieu Dit Les Ris, Lieu-dit, 03190 Vallon-en-Sully, France",
   },
   {
     id: "12342",
@@ -57,47 +72,31 @@ const listings: Listing[] = [
     shopName: "ABC Store",
     SIRETNumber: 7154459,
     starred: false,
+    firstName: "John",
+    lastName: "Doe",
+    phone: "01547476",
+    address: "123 Main St, Paris, France",
   },
-  {
-    id: "12343",
-    userProfile: "Jane Smith",
-    userImage: manIcon,
-    userEmail: "jane@email.com",
-    shopName: "Best Shop",
-    SIRETNumber: 7154460,
-    starred: true,
-  },
-  {
-    id: "12344",
-    userProfile: "Robert Johnson",
-    userImage: manIcon,
-    userEmail: "robert@email.com",
-    shopName: "Quality Goods",
-    SIRETNumber: 7154461,
-    starred: false,
-  },
-  {
-    id: "12346",
-    userProfile: "Sarah Williams",
-    userImage: manIcon,
-    userEmail: "sarah@email.com",
-    shopName: "Fashion Hub",
-    SIRETNumber: 7154462,
-    starred: true,
-  },
-  {
-    id: "12347",
-    userProfile: "Michael Brown",
-    userImage: manIcon,
-    userEmail: "michael@email.com",
-    shopName: "Tech World",
-    SIRETNumber: 7154463,
-    starred: false,
-  },
+  // ... other listings
 ];
 
 export default function UserRequest() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<Listing | null>(null);
+
+  const showModal = (record: Listing) => {
+    setSelectedUser(record);
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   const columns: TableColumnsType<Listing> = [
     {
@@ -151,9 +150,7 @@ export default function UserRequest() {
           },
           {
             key: "3",
-            label: (
-              <Link href={`/dashboard/user-details/${record?.id}`}>Details</Link>
-            ),
+            label: <span onClick={() => showModal(record)}>Details</span>,
           },
         ];
 
@@ -188,7 +185,7 @@ export default function UserRequest() {
           }}
         >
           <Title level={2} style={{ color: "#389e0d", margin: 0 }}>
-           User Request
+            User Request
           </Title>
         </div>
 
@@ -263,6 +260,127 @@ export default function UserRequest() {
           />
         </div>
       </div>
+
+      {/* User Details Modal */}
+      <Modal
+        title="User Details"
+        open={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width={700}
+        footer={[
+          <Button key="reject" danger onClick={handleCancel}>
+            Reject
+          </Button>,
+          <Button
+            key="accept"
+            type="primary"
+            onClick={handleOk}
+            className="!bg-green-500"
+          >
+            Accept
+          </Button>,
+        ]}
+      >
+        {selectedUser && (
+          <div style={{ padding: "20px 0" }}>
+            <Row gutter={[32, 16]}>
+              <Col span={8} style={{ textAlign: "center" }}>
+                <Avatar
+                  size={96}
+                  src={
+                    <Image
+                      src={selectedUser.userImage}
+                      alt={selectedUser.userProfile}
+                      width={96}
+                      height={96}
+                    />
+                  }
+                  style={{ marginBottom: "16px" }}
+                />
+                <Title level={4} style={{ margin: 0 }}>
+                  {selectedUser.userProfile}
+                </Title>
+              </Col>
+              <Col span={16}>
+                <Row gutter={[0, 16]}>
+                  <Col span={12}>
+                    <Space direction="vertical" size="small">
+                      <Text strong>
+                        <UserOutlined style={{ marginRight: "8px" }} />
+                        First Name
+                      </Text>
+                      <Text>{selectedUser.firstName || "N/A"}</Text>
+                    </Space>
+                  </Col>
+                  <Col span={12}>
+                    <Space direction="vertical" size="small">
+                      <Text strong>
+                        <UserOutlined style={{ marginRight: "8px" }} />
+                        Last Name
+                      </Text>
+                      <Text>{selectedUser.lastName || "N/A"}</Text>
+                    </Space>
+                  </Col>
+                  <Col span={12}>
+                    <Space direction="vertical" size="small">
+                      <Text strong>
+                        <IdcardOutlined style={{ marginRight: "8px" }} />
+                        SIRET Number
+                      </Text>
+                      <Text>{selectedUser.SIRETNumber}</Text>
+                    </Space>
+                  </Col>
+                  <Col span={12}>
+                    <Space direction="vertical" size="small">
+                      <Text strong>
+                        <PhoneOutlined style={{ marginRight: "8px" }} />
+                        Phone
+                      </Text>
+                      <Text>{selectedUser.phone || "N/A"}</Text>
+                    </Space>
+                  </Col>
+                  <Col span={12}>
+                    <Space direction="vertical" size="small">
+                      <Text strong>
+                        <MailOutlined style={{ marginRight: "8px" }} />
+                        Email
+                      </Text>
+                      <Text>{selectedUser.userEmail}</Text>
+                    </Space>
+                  </Col>
+                  <Col span={24}>
+                    <Space
+                      direction="vertical"
+                      size="small"
+                      style={{ width: "100%" }}
+                    >
+                      <Text strong>
+                        <EnvironmentOutlined style={{ marginRight: "8px" }} />
+                        Address
+                      </Text>
+                      <Text>{selectedUser.address || "N/A"}</Text>
+                    </Space>
+                  </Col>
+                  <Col span={24}>
+                    <Space
+                      direction="vertical"
+                      size="small"
+                      style={{ width: "100%" }}
+                    >
+                      <Text strong>
+                        <IdcardOutlined style={{ marginRight: "8px" }} />
+                        Shop Name
+                      </Text>
+                      <Text>{selectedUser.shopName}</Text>
+                    </Space>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </div>
+        )}
+      </Modal>
 
       <style jsx>{`
         :global(.ant-table-thead > tr > th) {
