@@ -9,6 +9,7 @@ import {
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
+import { UserOrderList } from "./UserOrderList";
 
 const { Title, Text } = Typography;
 
@@ -113,6 +114,7 @@ export default function UserDetails() {
           </Col>
         </Row>
       </Card>
+      <UserOrderList/>
     </div>
   );
 }
