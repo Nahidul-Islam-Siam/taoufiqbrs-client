@@ -1,16 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Button,
-  Input,
-  Card,
-  Typography,
-  Upload,
-  Space,
-  Row,
-  Col,
-} from "antd";
+import { Button, Input, Card, Typography, Upload, Space, Row, Col } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
@@ -18,7 +9,6 @@ const { Title, Text } = Typography;
 export default function EditWebsite() {
   const [heroTagline, setHeroTagline] = useState("");
   const [heroHeading, setHeroHeading] = useState("");
-  const [heroSubText, setHeroSubText] = useState("");
   const [categoryHeader, setCategoryHeader] = useState("");
   const [relatedHeader, setRelatedHeader] = useState("");
   const [relatedSubText, setRelatedSubText] = useState("");
@@ -33,14 +23,14 @@ export default function EditWebsite() {
     { key: "Add to Cart", label: "Add to Cart" },
   ];
 
-//   const secondaryTabs = [
-//     "Order Confirmation",
-//     "About Us",
-//     "Contact us",
-//     "Terms & Conditions",
-//     "Privacy Policy",
-//   ];
-//   const utilityTabs = ["Navigation Bar", "Footer"];
+  //   const secondaryTabs = [
+  //     "Order Confirmation",
+  //     "About Us",
+  //     "Contact us",
+  //     "Terms & Conditions",
+  //     "Privacy Policy",
+  //   ];
+  //   const utilityTabs = ["Navigation Bar", "Footer"];
 
   // Upload props
   const uploadProps = {
@@ -55,17 +45,34 @@ export default function EditWebsite() {
         return (
           <>
             {/* Hero Section */}
-            <Card style={{ marginBottom: 24, borderRadius: 8 }} bodyStyle={{ padding: 24 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-                <Title level={4} style={{ margin: 0, fontWeight: 600 }}>Hero Section</Title>
-                <Button type="primary" style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}>
+            <Card
+              style={{ marginBottom: 24, borderRadius: 8 }}
+              bodyStyle={{ padding: 24 }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <Title level={4} style={{ margin: 0, fontWeight: 600 }}>
+                  Hero Section
+                </Title>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
                   Save Change
                 </Button>
               </div>
 
               <Row gutter={16} style={{ marginBottom: 16 }}>
                 <Col xs={24} md={12}>
-                  <Text strong style={{ display: "block", marginBottom: 8 }}>Hero Tagline</Text>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Tagline
+                  </Text>
                   <Input
                     placeholder="Enter tagline"
                     value={heroTagline}
@@ -73,26 +80,43 @@ export default function EditWebsite() {
                   />
                 </Col>
                 <Col xs={24} md={12}>
-                  <Text strong style={{ display: "block", marginBottom: 8 }}>Hero Heading</Text>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Heading 1st half (Black)
+                  </Text>
                   <Input
-                    placeholder="Enter heading"
+                    placeholder="Hero Heading 1st half (Black)"
+                    value={heroHeading}
+                    onChange={(e) => setHeroHeading(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={16} style={{ marginBottom: 16 }}>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Heading 2nd half(Green)
+                  </Text>
+                  <Input
+                    placeholder="Hero Heading 2nd half(Green)"
+                    value={heroTagline}
+                    onChange={(e) => setHeroTagline(e.target.value)}
+                  />
+                </Col>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Subtext
+                  </Text>
+                  <Input
+                    placeholder="Hero Subtext"
                     value={heroHeading}
                     onChange={(e) => setHeroHeading(e.target.value)}
                   />
                 </Col>
               </Row>
 
-              <div style={{ marginBottom: 24 }}>
-                <Text strong style={{ display: "block", marginBottom: 8 }}>Hero SubText</Text>
-                <Input
-                  placeholder="Enter subtext"
-                  value={heroSubText}
-                  onChange={(e) => setHeroSubText(e.target.value)}
-                />
-              </div>
-
               <div>
-                <Text strong style={{ display: "block", marginBottom: 8 }}>Background</Text>
+                <Text strong style={{ display: "block", marginBottom: 8 }}>
+                  Background
+                </Text>
                 <Upload.Dragger
                   {...uploadProps}
                   style={{
@@ -102,14 +126,28 @@ export default function EditWebsite() {
                     borderRadius: 8,
                   }}
                 >
-                  <UploadOutlined style={{ fontSize: 24, color: "#9ca3af", marginBottom: 8 }} />
-                  <Text style={{ display: "block", color: "#4b5563", marginBottom: 4 }}>
+                  <UploadOutlined
+                    style={{ fontSize: 24, color: "#9ca3af", marginBottom: 8 }}
+                  />
+                  <Text
+                    style={{
+                      display: "block",
+                      color: "#4b5563",
+                      marginBottom: 4,
+                    }}
+                  >
                     Drop file or browse
                   </Text>
-                  <Text type="secondary" style={{ fontSize: 12, display: "block", marginBottom: 12 }}>
+                  <Text
+                    type="secondary"
+                    style={{ fontSize: 12, display: "block", marginBottom: 12 }}
+                  >
                     Format: jpeg, png, mp4 & Max file size: 25 MB
                   </Text>
-                  <Button icon={<UploadOutlined />} style={{ marginTop: 12, color: "#4b5563" }}>
+                  <Button
+                    icon={<UploadOutlined />}
+                    style={{ marginTop: 12, color: "#4b5563" }}
+                  >
                     Browse
                   </Button>
                 </Upload.Dragger>
@@ -117,10 +155,34 @@ export default function EditWebsite() {
             </Card>
 
             {/* Package Section */}
-            <Card style={{ marginBottom: 24, borderRadius: 8 }} bodyStyle={{ padding: 24 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-                <Title level={4} style={{ margin: 0, fontWeight: 600 }}>Package Information Section</Title>
-                <Button type="primary" style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}>
+            <Card
+              style={{ marginBottom: 24, borderRadius: 8 }}
+              bodyStyle={{ padding: 24 }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <div>
+                  <Title level={2} style={{ margin: 0, fontWeight: 600 }}>
+                    Category Section
+                  </Title>
+                  <Title
+                    level={4}
+                    style={{ margin: 0, marginTop: "20px", fontWeight: 600 }}
+                  >
+                    Change Category Header
+                  </Title>
+                </div>
+
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
                   Save Change
                 </Button>
               </div>
@@ -132,17 +194,34 @@ export default function EditWebsite() {
               />
             </Card>
 
-            {/* Related Products Section */}
+            {/* Our Products Section Section */}
             <Card style={{ borderRadius: 8 }} bodyStyle={{ padding: 24 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-                <Title level={4} style={{ margin: 0, fontWeight: 600 }}>Related Products Section</Title>
-                <Button type="primary" style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <div>
+                  <Title level={2} style={{ margin: 0, fontWeight: 600 }}>
+                    Best Selling Products Section
+                  </Title>
+                </div>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
                   Save Change
                 </Button>
               </div>
 
               <Row gutter={16}>
                 <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Header
+                  </Text>
                   <Input
                     placeholder="Change header"
                     value={relatedHeader}
@@ -150,6 +229,147 @@ export default function EditWebsite() {
                   />
                 </Col>
                 <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Subtext
+                  </Text>
+                  <Input
+                    placeholder="Enter subtext"
+                    value={relatedSubText}
+                    onChange={(e) => setRelatedSubText(e.target.value)}
+                  />
+                </Col>
+              </Row>
+            </Card>
+
+            <Card style={{ borderRadius: 8 }} bodyStyle={{ padding: 24 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <div>
+                  <Title level={2} style={{ margin: 0, fontWeight: 600 }}>
+                    Our Products Section
+                  </Title>
+                </div>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
+                  Save Change
+                </Button>
+              </div>
+
+              <Row gutter={16}>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Header
+                  </Text>
+                  <Input
+                    placeholder="Change header"
+                    value={relatedHeader}
+                    onChange={(e) => setRelatedHeader(e.target.value)}
+                  />
+                </Col>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Subtext
+                  </Text>
+                  <Input
+                    placeholder="Enter subtext"
+                    value={relatedSubText}
+                    onChange={(e) => setRelatedSubText(e.target.value)}
+                  />
+                </Col>
+              </Row>
+            </Card>
+            {/* Best Selling Packages Section */}
+            <Card style={{ borderRadius: 8 }} bodyStyle={{ padding: 24 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <div>
+                  <Title level={2} style={{ margin: 0, fontWeight: 600 }}>
+                    Best Selling Packages Section
+                  </Title>
+                </div>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
+                  Save Change
+                </Button>
+              </div>
+
+              <Row gutter={16}>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Header
+                  </Text>
+                  <Input
+                    placeholder="Change header"
+                    value={relatedHeader}
+                    onChange={(e) => setRelatedHeader(e.target.value)}
+                  />
+                </Col>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Subtext
+                  </Text>
+                  <Input
+                    placeholder="Enter subtext"
+                    value={relatedSubText}
+                    onChange={(e) => setRelatedSubText(e.target.value)}
+                  />
+                </Col>
+              </Row>
+            </Card>
+            {/* Our Packages Section */}
+            <Card style={{ borderRadius: 8 }} bodyStyle={{ padding: 24 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <div>
+                  <Title level={2} style={{ margin: 0, fontWeight: 600 }}>
+                    Our Packages Section
+                  </Title>
+                </div>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
+                  Save Change
+                </Button>
+              </div>
+
+              <Row gutter={16}>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Header
+                  </Text>
+                  <Input
+                    placeholder="Change header"
+                    value={relatedHeader}
+                    onChange={(e) => setRelatedHeader(e.target.value)}
+                  />
+                </Col>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Subtext
+                  </Text>
                   <Input
                     placeholder="Enter subtext"
                     value={relatedSubText}
@@ -164,16 +384,302 @@ export default function EditWebsite() {
       case "Shop":
         return (
           <Card bodyStyle={{ padding: 24 }}>
-            <Title level={4}>Shop Settings</Title>
-            <Input placeholder="Shop banner heading..." />
+            {/* Hero Section */}
+            <Card
+              style={{ marginBottom: 24, borderRadius: 8 }}
+              bodyStyle={{ padding: 24 }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <Title level={4} style={{ margin: 0, fontWeight: 600 }}>
+                  Hero Section
+                </Title>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
+                  Save Change
+                </Button>
+              </div>
+
+              <Row gutter={16} style={{ marginBottom: 16 }}>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Tagline
+                  </Text>
+                  <Input
+                    placeholder="Enter tagline"
+                    value={heroTagline}
+                    onChange={(e) => setHeroTagline(e.target.value)}
+                  />
+                </Col>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Heading 1st half (Black)
+                  </Text>
+                  <Input
+                    placeholder="Hero Heading 1st half (Black)"
+                    value={heroHeading}
+                    onChange={(e) => setHeroHeading(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={16} style={{ marginBottom: 16 }}>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Heading 2nd half(Green)
+                  </Text>
+                  <Input
+                    placeholder="Hero Heading 2nd half(Green)"
+                    value={heroTagline}
+                    onChange={(e) => setHeroTagline(e.target.value)}
+                  />
+                </Col>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Subtext
+                  </Text>
+                  <Input
+                    placeholder="Hero Subtext"
+                    value={heroHeading}
+                    onChange={(e) => setHeroHeading(e.target.value)}
+                  />
+                </Col>
+              </Row>
+
+              <div>
+                <Text strong style={{ display: "block", marginBottom: 8 }}>
+                  Background
+                </Text>
+                <Upload.Dragger
+                  {...uploadProps}
+                  style={{
+                    padding: 32,
+                    backgroundColor: "white",
+                    border: "2px dashed #d1d5db",
+                    borderRadius: 8,
+                  }}
+                >
+                  <UploadOutlined
+                    style={{ fontSize: 24, color: "#9ca3af", marginBottom: 8 }}
+                  />
+                  <Text
+                    style={{
+                      display: "block",
+                      color: "#4b5563",
+                      marginBottom: 4,
+                    }}
+                  >
+                    Drop file or browse
+                  </Text>
+                  <Text
+                    type="secondary"
+                    style={{ fontSize: 12, display: "block", marginBottom: 12 }}
+                  >
+                    Format: jpeg, png, mp4 & Max file size: 25 MB
+                  </Text>
+                  <Button
+                    icon={<UploadOutlined />}
+                    style={{ marginTop: 12, color: "#4b5563" }}
+                  >
+                    Browse
+                  </Button>
+                </Upload.Dragger>
+              </div>
+            </Card>
+            {/* Our Packages Section */}
+            <Card style={{ borderRadius: 8 }} bodyStyle={{ padding: 24 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <div>
+                  <Title level={2} style={{ margin: 0, fontWeight: 600 }}>
+                    All Product Section
+                  </Title>
+                </div>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
+                  Save Change
+                </Button>
+              </div>
+
+              <Row gutter={24}>
+                <Col xs={24} md={24}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Category Header
+                  </Text>
+                  <Input
+                    placeholder="Change header"
+                    value={relatedHeader}
+                    onChange={(e) => setRelatedHeader(e.target.value)}
+                  />
+                </Col>
+              </Row>
+            </Card>
           </Card>
         );
 
       case "Packages":
         return (
           <Card bodyStyle={{ padding: 24 }}>
-            <Title level={4}>Packages Settings</Title>
-            <Input placeholder="Package info..." />
+            {/* Hero Section */}
+            <Card
+              style={{ marginBottom: 24, borderRadius: 8 }}
+              bodyStyle={{ padding: 24 }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <Title level={4} style={{ margin: 0, fontWeight: 600 }}>
+                  Hero Section
+                </Title>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
+                  Save Change
+                </Button>
+              </div>
+
+              <Row gutter={16} style={{ marginBottom: 16 }}>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Tagline
+                  </Text>
+                  <Input
+                    placeholder="Enter tagline"
+                    value={heroTagline}
+                    onChange={(e) => setHeroTagline(e.target.value)}
+                  />
+                </Col>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Heading
+                  </Text>
+                  <Input
+                    placeholder="Enter heading"
+                    value={heroHeading}
+                    onChange={(e) => setHeroHeading(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row gutter={16} style={{ marginBottom: 16 }}>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Subtext
+                  </Text>
+                  <Input
+                    placeholder="Enter subtext"
+                    value={heroTagline}
+                    onChange={(e) => setHeroTagline(e.target.value)}
+                  />
+                </Col>
+                <Col xs={24} md={12}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Hero Subtext
+                  </Text>
+                  <Input
+                    placeholder="Hero Subtext"
+                    value={heroHeading}
+                    onChange={(e) => setHeroHeading(e.target.value)}
+                  />
+                </Col>
+              </Row>
+
+              <div>
+                <Text strong style={{ display: "block", marginBottom: 8 }}>
+                  Background
+                </Text>
+                <Upload.Dragger
+                  {...uploadProps}
+                  style={{
+                    padding: 32,
+                    backgroundColor: "white",
+                    border: "2px dashed #d1d5db",
+                    borderRadius: 8,
+                  }}
+                >
+                  <UploadOutlined
+                    style={{ fontSize: 24, color: "#9ca3af", marginBottom: 8 }}
+                  />
+                  <Text
+                    style={{
+                      display: "block",
+                      color: "#4b5563",
+                      marginBottom: 4,
+                    }}
+                  >
+                    Drop file or browse
+                  </Text>
+                  <Text
+                    type="secondary"
+                    style={{ fontSize: 12, display: "block", marginBottom: 12 }}
+                  >
+                    Format: jpeg, png, mp4 & Max file size: 25 MB
+                  </Text>
+                  <Button
+                    icon={<UploadOutlined />}
+                    style={{ marginTop: 12, color: "#4b5563" }}
+                  >
+                    Browse
+                  </Button>
+                </Upload.Dragger>
+              </div>
+            </Card>
+            {/* Our Packages Section */}
+            <Card style={{ borderRadius: 8 }} bodyStyle={{ padding: 24 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <div>
+                  <Title level={2} style={{ margin: 0, fontWeight: 600 }}>
+                    All Packages Section
+                  </Title>
+                </div>
+                <Button
+                  type="primary"
+                  style={{ backgroundColor: "#16a34a", borderColor: "#16a34a" }}
+                >
+                  Save Change
+                </Button>
+              </div>
+
+              <Row gutter={24}>
+                <Col xs={24} md={24}>
+                  <Text strong style={{ display: "block", marginBottom: 8 }}>
+                    Change Category Header
+                  </Text>
+                  <Input
+                    placeholder="Change header"
+                    value={relatedHeader}
+                    onChange={(e) => setRelatedHeader(e.target.value)}
+                  />
+                </Col>
+              </Row>
+            </Card>
           </Card>
         );
 
@@ -186,10 +692,16 @@ export default function EditWebsite() {
     <div style={{ minHeight: "100vh", backgroundColor: "#fff", padding: 20 }}>
       {/* Header */}
       <div style={{ marginBottom: 24 }}>
-        <Text type="secondary" style={{ display: "block", marginBottom: 8, fontSize: 14 }}>
+        <Text
+          type="secondary"
+          style={{ display: "block", marginBottom: 8, fontSize: 14 }}
+        >
           Edit Website
         </Text>
-        <Title level={2} style={{ margin: 0, color: "#1f2937", fontWeight: 600 }}>
+        <Title
+          level={2}
+          style={{ margin: 0, color: "#1f2937", fontWeight: 600 }}
+        >
           Edit Website
         </Title>
       </div>
