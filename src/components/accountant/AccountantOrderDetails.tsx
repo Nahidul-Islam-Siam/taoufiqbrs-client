@@ -25,7 +25,6 @@ import {
   CalendarOutlined,
 } from "@ant-design/icons";
 import fruit from "@/assets/admin/fruit.png";
-import rider from "@/assets/admin/rider.png";
 const { Title, Text } = Typography;
 
 interface OrderItem {
@@ -45,14 +44,9 @@ interface Customer {
   orderDate: string;
 }
 
-interface Rider {
-  id: string;
-  name: string;
-  email: string;
-  avatar: any;
-}
 
-export default function OrderDetails() {
+
+export default function AccountantOrderDetails() {
   const [orderItems, setOrderItems] = useState<OrderItem[]>([
     {
       id: "1",
@@ -88,20 +82,7 @@ export default function OrderDetails() {
     orderDate: "July 30, 2022",
   };
 
-  const riders: Rider[] = [
-    {
-      id: "1",
-      name: "Henry Jr.",
-      email: "henry@gmail.com",
-      avatar: rider,
-    },
-    {
-      id: "2",
-      name: "Alice M.",
-      email: "alice@gmail.com",
-      avatar: rider,
-    },
-  ];
+ 
 
   const updateQuantity = (id: string, change: number) => {
     setOrderItems((items) =>
@@ -267,37 +248,7 @@ export default function OrderDetails() {
             </Row>
           </Card>
 
-          {/* Available Riders */}
-          <Card
-            title={
-              <span className="text-lg font-semibold">Available Riders</span>
-            }
-            className="mt-6 shadow-sm rounded-lg"
-          >
-            <List
-              itemLayout="horizontal"
-              dataSource={riders}
-              renderItem={(rider) => (
-                <List.Item
-                  actions={[
-                    <Button
-                      key={rider.id}
-                      type="primary"
-                      className="bg-green-600 hover:!bg-green-700 border-green-600"
-                    >
-                      Assign Rider
-                    </Button>,
-                  ]}
-                >
-                  <List.Item.Meta
-                    avatar={<Avatar src={rider?.avatar} size={48} />}
-                    title={<Text strong>{rider.name}</Text>}
-                    description={rider.email}
-                  />
-                </List.Item>
-              )}
-            />
-          </Card>
+        
         </Col>
 
         {/* Order Summary Sidebar */}
@@ -336,30 +287,18 @@ export default function OrderDetails() {
 
               <Row justify="space-between" className="w-full">
                 <Col>
-                  <Text strong className="text-lg">
+                  <Text strong className="text-4xl">
                     Total Amount
                   </Text>
                 </Col>
                 <Col>
-                  <Text strong className="text-lg text-green-600">
+                  <Text strong className="text-4xl text-green-600">
                     ${total.toFixed(2)}
                   </Text>
                 </Col>
               </Row>
 
-              <Space direction="vertical" className="w-full mt-4">
-                <Button
-                  type="primary"
-                  size="large"
-                  block
-                  className="h-12 bg-green-600 hover:!bg-green-700 border-green-600"
-                >
-                  Accept Order
-                </Button>
-                <Button size="large" block danger className="h-12">
-                  Decline Order
-                </Button>
-              </Space>
+              
             </Space>
           </Card>
         </Col>

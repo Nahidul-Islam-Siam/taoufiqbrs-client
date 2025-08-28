@@ -1,7 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Table, Tag, Button, Dropdown, Menu, Pagination } from "antd";
+import {
+  Table,
+  Tag,
+  Button,
+  Dropdown,
+  Menu,
+  Pagination,
+  Breadcrumb,
+  Typography,
+} from "antd";
 import { DownloadOutlined, MoreOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -12,7 +21,7 @@ interface Order {
   address: string;
   amount: string;
   slot: string;
-  status: "Processing" | "Done" | "cancel";
+  status: "Pending" | "Accepted";
 }
 
 const orders: Order[] = [
@@ -23,7 +32,7 @@ const orders: Order[] = [
     address: "35 N 100 E, Salina",
     amount: "$1234",
     slot: "07:30 am",
-    status: "Processing",
+    status: "Pending",
   },
   {
     id: 12346,
@@ -32,7 +41,7 @@ const orders: Order[] = [
     address: "21 W 200 S, Manti",
     amount: "$567",
     slot: "02:15 pm",
-    status: "Done",
+    status: "Accepted",
   },
   {
     id: 12347,
@@ -41,21 +50,19 @@ const orders: Order[] = [
     address: "48 E 300 N, Monroe",
     amount: "$890",
     slot: "10:00 am",
-    status: "cancel",
+    status: "Accepted",
   },
 ];
 
-export function UserOrderList() {
+export function AccountantOrderRequest() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
 
   const getStatusColor = (status: Order["status"]) => {
     switch (status) {
-      case "Processing":
-        return "blue";
-      case "Done":
+      case "Accepted":
         return "green";
-      case "cancel":
+      case "Pending":
         return "red";
       default:
         return "default";
@@ -122,8 +129,8 @@ export function UserOrderList() {
       render: (_: any, record: Order) => {
         const menu = (
           <Menu>
-            <Menu.Item key="done">Done</Menu.Item>
-            <Menu.Item key="cancel">Cancel</Menu.Item>
+            <Menu.Item key="done">Accept</Menu.Item>
+            <Menu.Item key="cancel">Reject</Menu.Item>
             <Menu.Item key="details">
               <Link href={`/accountant/order-details/${record?.id}`}>
                 Details
@@ -140,12 +147,18 @@ export function UserOrderList() {
       },
     },
   ];
+  const { Text } = Typography;
 
   return (
-    <div>
+    <div className="p-5 ">
+      <Breadcrumb style={{ marginBottom: "16px" }}>
+        <Breadcrumb.Item>
+          <Text type="secondary">Order Request</Text>
+        </Breadcrumb.Item>
+      </Breadcrumb>
       <h1 className="text-[#328736] text-[20px] font-bold p-5">Order List</h1>
       <Table
-        className="p-5 overflow-y-scroll [&_.ant-table-thead>tr>th]:bg-gray-900 [&_.ant-table-thead>tr>th]:text-white"
+        className="overflow-y-scroll [&_.ant-table-thead>tr>th]:bg-gray-900 [&_.ant-table-thead>tr>th]:text-white"
         columns={columns}
         dataSource={orders}
         rowKey="id"

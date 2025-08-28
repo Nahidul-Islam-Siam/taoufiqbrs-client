@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import Link from "next/link";
 import { MenuItem } from "../Layout";
 import BaseLayout, { getItem } from "./Layout";
-import { ClockArrowDown, LayoutDashboard, NotebookTabs, Package, ShoppingBag } from "lucide-react";
+import { ClockArrowDown, LayoutDashboard, NotebookTabs, Package, Settings, ShoppingBag, User } from "lucide-react";
 
 const navLinks: MenuItem[] = [
   getItem(
@@ -23,7 +23,7 @@ const navLinks: MenuItem[] = [
     <ClockArrowDown />
   ),
   getItem(
-    <Link href="/accountant/order-request">My Listing</Link>,
+    <Link href="/accountant/my-listing">My Listing</Link>,
     "/accountant/my-listing",
     <NotebookTabs />
   ),
@@ -31,6 +31,16 @@ const navLinks: MenuItem[] = [
     <Link href="/accountant/my-packages">My Packages</Link>,
     "/accountant/my-packages",
     <Package />
+  ),
+  getItem(
+    <Link href="/accountant/users">Users</Link>,
+    "/accountant/users",
+    <User />
+  ),
+  getItem(
+    <Link href="/accountant/accountant-setting">Setting</Link>,
+    "/accountant/accountant-setting",
+    <Settings />
   ),
 ];
 

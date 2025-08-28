@@ -45,7 +45,7 @@ const orders: Order[] = [
   },
 ];
 
-export function UserOrderList() {
+export function AccountantOrderList() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
 
