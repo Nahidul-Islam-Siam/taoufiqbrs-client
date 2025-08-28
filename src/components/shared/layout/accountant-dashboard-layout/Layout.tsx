@@ -29,21 +29,19 @@ export function getItem(
   } as MenuItem;
 }
 
-interface AdminLayoutProps {
+interface BaseLayoutProps {
   children: ReactNode;
-  menu: MenuItem[];
+  nav: MenuItem[];
 }
 
-const AdminLayout: React.FC<AdminLayoutProps> = ({ children, menu }) => {
+const BaseLayout: React.FC<BaseLayoutProps> = ({ children, nav }) => {
   const [open, setOpen] = useState<boolean>(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   const pathname = usePathname();
-  console.log(pathname);
-
-  const [selectedKey, setSelectedKey] = useState("/dashboard");
+  const [selectedKey, setSelectedKey] = useState(pathname);
 
   const handleClick = ({ key }: { key: string }) => {
     setSelectedKey(key);
@@ -51,13 +49,13 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, menu }) => {
 
   return (
     <Layout style={{ height: "100vh" }}>
+      {/* Sidebar */}
       <Sider
         width={220}
         className={`!bg-[#fff] !overflow-y-auto !fixed lg:!static h-full z-50 ${
           open ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
         theme="light"
-        collapsed={false}
       >
         <Link
           href={"/"}
@@ -70,17 +68,17 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, menu }) => {
           mode="inline"
           selectedKeys={[selectedKey]}
           onClick={handleClick}
-          items={menu}
+          items={nav}
           style={{
             backgroundColor: "#fff",
             fontWeight: "500",
             borderRight: 0,
           }}
           inlineIndent={16}
-          rootClassName="custom-sidebar"
         />
       </Sider>
 
+      {/* Main */}
       <Layout>
         <Header
           style={{
@@ -107,7 +105,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, menu }) => {
               />
               <div className="flex flex-col">
                 <h1 className="text-sm font-medium">John Doe</h1>
-                <p className="text-xs text-gray-500">Admin</p>
+                <p className="text-xs text-gray-500">Accountant</p>
               </div>
             </div>
           </div>
@@ -134,4 +132,4 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, menu }) => {
   );
 };
 
-export default AdminLayout;
+export default BaseLayout;
